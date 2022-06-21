@@ -51,18 +51,22 @@ public:
     //post: busca el objeto asociado a la llave
     Escritor* encontrar_dato(string llave);
 
+    //pre: recibe una entero representado el indice y una cadena
+    //post: busca el objeto asociado a la cadena y retorna su direccion
     Escritor* buscar_item(int indice, string nombre);
 
+    //pre: recibe una cadena
+    //post: busca el objeto asociado a la cadena devuelve puntero al objeto
     Escritor* encontrar_por_nombre(string nombre);
 
+    //pre:
+    //post: lista los escritores
     void listar_escritor();
 
+    //pre:
+    //post: imprime los nombres del objeto dado el bucket escritores
     void imprimir_nombre(int indice);
 
-
-        //pre: recibe una cadena representando la llave
-    //post: elimina el elemento
-    //void eliminar_lista(string llave);
 };
 
 
