@@ -56,13 +56,12 @@ string Printer::pedir_libro(){
 
 generos Printer::pedir_genero(){
     int genero;
-    cout << "Ingrese el género de la novela" << endl;
+    cout << "Ingrese el género de la novela (numero entero) " << endl;
     cout << AMARILLO << "(1.DRAMA / 2.COMEDIA / 3.FICCION / 4.SUSPENSO / 5.TERROR / 6.ROMANTICA / 7.HISTORICA): "<< endl;
     cin >> genero;
     while(genero > 7 || genero < 1){
         cout << ROJO << "Dato incorrecto! Ingrese un genero valido" << endl;
         cout << AMARILLO << "(1.DRAMA / 2.COMEDIA / 3.FICCION / 4.SUSPENSO / 5.TERROR / 6.ROMANTICA / 7.HISTORICA): "<< endl;
-        cin.ignore();
         cin >> genero;
     }
     return (generos) genero;
@@ -80,6 +79,7 @@ string Printer::pedir_tema(){
 string Printer::pedir_isni(){
     string isni;
     cout << AZUL << "Ingrese isni del escritor: ";
+    cin.ignore();
     getline(cin, isni);
     return isni;
 }

@@ -65,6 +65,7 @@ Hash Parser::procesar_escritor(string ruta, Hash tabla){
     return tabla;
 }
 
+
 Lista <Lectura*>* Parser::procesar_lectura(string ruta, Lista<Lectura*>* lista_lecturas, Hash tabla){
 
     Escritor* escritor;
@@ -167,16 +168,18 @@ void Parser::almacenar_lectura(Lectura* lectura, Lista<Lectura*> *lista_lecturas
 bool Parser::verificar_escritor(string linea_escritor){
     return linea_escritor != "ANONIMO";
 }
+
+
 Escritor* Parser::obtener_escritor(string linea, Hash tabla){
     Escritor* escritor;
 
     if (verificar_escritor(linea)){
         escritor = tabla.encontrar_dato(linea);
-        std::cout <<  "****************" << escritor->obtener_nombre() << std::endl;
+        std::cout <<  "**************** " << escritor->obtener_nombre() << std::endl;
     }
     else{
         escritor = nullptr;
-        std::cout << escritor << std::endl;
+        std::cout << "---------------  ANONIMO" << std::endl;
     }
     return escritor;
 }

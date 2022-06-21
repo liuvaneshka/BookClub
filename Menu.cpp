@@ -3,10 +3,11 @@
 
 Menu::Menu(){
 
-    Lista <Lectura*> *lista_lecturas = new Lista<Lectura*>;
-
     Parser parser;
     Hash tabla;
+    Lista <Lectura*> *lista_lecturas = new Lista<Lectura*>;
+    cola_lecturas = nullptr;
+
     this-> tabla = parser.procesar_escritor(ARCHIVO_ESCRITORES, tabla);
     this->lista_lecturas = parser.procesar_lectura(ARCHIVO_LECTURAS, lista_lecturas, tabla);
 
@@ -16,6 +17,8 @@ Menu::Menu(){
 Menu::~Menu(){
 
     delete lista_lecturas;
+    if (cola_lecturas)
+        delete cola_lecturas;
 }
 
 void Menu::mostrar_menu(){
@@ -29,8 +32,9 @@ void Menu::elegir_opcion(){
 }
 
 bool Menu::selector_menu(){
-    Opciones opciones(tabla, lista_lecturas);
     bool estado;
+    Opciones opciones(tabla, lista_lecturas, cola_lecturas);
+
     switch (this->opcion){
 
         case 1:
@@ -41,16 +45,19 @@ bool Menu::selector_menu(){
 
         case 2:
             cout << VERDE << "Caso 2: Quitar lectura" << endl;
+            opciones.quitar_lectura();
             estado = true;
             break;
 
         case 3:
             cout << VERDE << "Caso 3: Agregar un escritor" << endl;
+            opciones.agregar_escritor();
             estado = true;
             break;
 
         case 4:
             cout << VERDE << "Caso 4: Actualizar fallecimiento autor" << endl;
+            opciones.modificar_fallecimiento();
             estado = true;
             break;
 
@@ -62,6 +69,7 @@ bool Menu::selector_menu(){
 
         case 6:
             cout << VERDE << "Caso 6: Sortear una lectura" << endl;
+            opciones.sortear();
             estado = true;
             break;
 
@@ -73,26 +81,32 @@ bool Menu::selector_menu(){
 
         case 8:
             cout << VERDE << "Caso 8: Listar lecturas por anio" << endl;
+            opciones.listar_lecturas_entre_anios();
             estado = true;
             break;
 
         case 9:
             cout << VERDE << "Caso 9: Listar lecturas por escritor" << endl;
+            tabla.listar_escritor();
+            cout << endl;
+            opciones.listar_por_escritor();
             estado = true;
             break;
 
         case 10:
             cout << VERDE << "Caso 10: Listar Novelas por genero" << endl;
+            opciones.listar_novelas_de_genero();
             estado = true;
             break;
 
         case 11:
             cout << VERDE << "Caso 11: Listar proximas lecturas" << endl;
+            cola_lecturas = opciones.proximas_lecturas();
             estado = true;
             break;
 
         case 12:
-            cout << "\n\t\t\tCordial despedida\n" << endl;
+            cout << ROJO << "\n\t\t\tCordial despedida\n" << endl;
             estado = false;
             break;
 
@@ -101,5 +115,6 @@ bool Menu::selector_menu(){
             estado = true;
 
     }
+
     return estado;
 }

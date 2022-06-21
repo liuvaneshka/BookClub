@@ -33,6 +33,8 @@ const string OPCIONES [] = {"Agregar una nueva lectura",
                           "Salir"};
 
 const int CANT_OPCIONES = 12;
+const int N = 25; // lambda = 0.8, lambda = clave/n un numero primo al menos 1.3 veces mas de las claves
+
 
 //Colores
 const string NEGRO = "\e[1;30m";

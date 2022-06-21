@@ -35,6 +35,8 @@ private:
     Printer printer;
     Hash tabla;
     Lista<Lectura*>* lista_lecturas;
+    Cola<Lectura*>* cola_lecturas;
+
 
 public:
 
