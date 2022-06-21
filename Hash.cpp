@@ -20,7 +20,7 @@ Hash::~Hash(){
     Item* temp;
     Item* siguiente_temp;
 
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < N; ++i){
         temp = tabla_hash[i];
         while(nullptr != temp){
             siguiente_temp = temp->siguiente;
@@ -29,7 +29,6 @@ Hash::~Hash(){
         }
         tabla_hash[i] = nullptr;
     }
-
 }*/
 
 int Hash::valor_Hash(string llave){
@@ -176,16 +175,3 @@ void Hash::listar_escritor() {
     }
 }
 
-/*
-void Hash::eliminar_lista(string llave) {
-
-    int indice = Hash(llave);
-
-    lista* puntero_eliminar;
-    lista* puntero;
-    lista* aux;
-
-
-
-}
-*/
