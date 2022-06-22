@@ -17,18 +17,18 @@
 int main(){
     Grafo grafo;
 
-    grafo.agregar_vertice(11);
+    grafo.agregar_vertice(1);
     grafo.agregar_vertice(3);
     grafo.agregar_vertice(6);
     grafo.agregar_vertice(9);
     grafo.agregar_vertice(5);
 
     //(vertice_uno, vetice_dos, peso_arista)
-    grafo.agregar_camino(11, 6, 8);
+    grafo.agregar_camino(1, 6, 8);
     grafo.agregar_camino(6, 3, 7);
     grafo.agregar_camino(6, 9, 5);
     grafo.agregar_camino(9, 3, 1);
-    grafo.agregar_camino(5, 11, 1);
+    grafo.agregar_camino(5, 1, 1);
     grafo.agregar_camino(5, 9, 5);
 
     grafo.mostrar_grafo();
