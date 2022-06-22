@@ -7,3 +7,5 @@ Vertice::Vertice(int nombre) {
 int Vertice::obtener_nombre() {
     return nombre;
 }
+
+Vertice::~Vertice() {}

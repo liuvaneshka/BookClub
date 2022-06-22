@@ -48,9 +48,9 @@ void Nodo<Tipo>::asignar_siguiente(Nodo<Tipo> *siguiente) {
     this -> siguiente = siguiente;
 }
 
-/*template<typename Tipo>
+template<typename Tipo>
 Nodo<Tipo>::~Nodo(){
     delete elemento;
-}*/
+}
 
 #endif //GRAFOS_NODO_H

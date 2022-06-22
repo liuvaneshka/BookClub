@@ -93,7 +93,7 @@ int Lista<Tipo>::consultar(int posicion) {
         return NOMBRE_NO_ENCONTRADO;
     }
 
-    while(i != posicion - 1){
+    while(i < posicion - 1){        // ANTES: (i != posicion - 1)
         auxiliar = auxiliar -> obtener_siguiente();
         i++;
     }
