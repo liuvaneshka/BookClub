@@ -109,4 +109,7 @@ string Grafo_lecturas::obtener_tipo(Lectura* lectura_actual){
     return tipo_lectura;
 }
 
-Grafo_lecturas::~Grafo_lecturas(){}
+Grafo_lecturas::~Grafo_lecturas(){
+    delete [] vertices;
+    delete grafo_lecturas;
+}
