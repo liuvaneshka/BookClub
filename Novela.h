@@ -33,5 +33,21 @@ public:
     //PRE: El objeto Novela debe ser un objeto válido.
     //POST: Imprime por pantalla la NOvela, si su género se corresponde con genero.
     void imprimir_novela_genero(generos genero);
+
+    //PRE:
+    //POST:
+    bool es_cuento();
+
+    //PRE:
+    //POST:
+    bool es_poema();
+
+    //PRE:
+    //POST:
+    bool es_novela();
+
+    //PRE:
+    //POST:
+    bool es_historica();
 };
 #endif // __NOVELA_H__

@@ -77,3 +77,8 @@ void Novela_historica::imprimir_novela_genero(generos genero){
     if (genero == HISTORICA)
         mostrar_lectura();
 }
+
+bool Novela_historica::es_historica(){return true;}
+bool Novela_historica::es_poema(){return false;}
+bool Novela_historica::es_novela(){return false;}
+bool Novela_historica::es_cuento(){return false;}

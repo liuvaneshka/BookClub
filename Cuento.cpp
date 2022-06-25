@@ -17,3 +17,8 @@ void Cuento :: mostrar_lectura(){
 Cuento :: ~Cuento(){};
 
 void Cuento::imprimir_novela_genero(generos genero){}
+
+bool Cuento::es_cuento(){return true;}
+bool Cuento::es_poema(){return false;}
+bool Cuento::es_historica(){return false;}
+bool Cuento::es_novela(){return false;}

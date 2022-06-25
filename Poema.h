@@ -28,6 +28,22 @@ public:
     //PRE: El objeto Poema debe ser un objeto válido.
     //POST: Por ser un Poema, no hace nada ya que no tiene género (polimorfimo)
     void imprimir_novela_genero(generos genero);
+
+    //PRE:
+    //POST:
+    bool es_poema();
+
+    //PRE:
+    //POST:
+    bool es_cuento();
+
+    //PRE:
+    //POST:
+    bool es_novela();
+
+    //PRE:
+    //POST:
+    bool es_historica();
 };
 
 #endif //TP2_POEMA_H

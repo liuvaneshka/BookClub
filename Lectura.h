@@ -58,6 +58,11 @@ public:
     int comparar_lecturas(Lectura *lectura);
 
     int comparar_lecturas(Lectura *lectura, int sobrecargar);
+
+    virtual bool es_cuento() = 0;
+    virtual bool es_poema() = 0;
+    virtual bool es_novela() = 0;
+    virtual bool es_historica() = 0;
 };
 
 #endif //TP2_LECTURA_H

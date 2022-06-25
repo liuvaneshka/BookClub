@@ -41,3 +41,8 @@ void Novela::imprimir_novela_genero(generos genero){
     if (genero == obtener_genero())
         mostrar_lectura();
 }
+
+bool Novela::es_novela(){return true;}
+bool Novela::es_poema(){return false;}
+bool Novela::es_historica(){return false;}
+bool Novela::es_cuento(){return false;}

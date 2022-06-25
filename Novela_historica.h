@@ -40,5 +40,20 @@ public:
     //POST: Imprime por pantalla la NOvela, si genero es HISTORICA.
     void imprimir_novela_genero(generos genero);
 
+    //PRE:
+    //POST:
+    bool es_cuento();
+
+    //PRE:
+    //POST:
+    bool es_poema();
+
+    //PRE:
+    //POST:
+    bool es_novela();
+
+    //PRE:
+    //POST:
+    bool es_historica();
 };
 #endif // __NOVELA_HISTORICA_H__

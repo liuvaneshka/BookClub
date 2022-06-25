@@ -1,6 +1,7 @@
 #ifndef __LISTA_H__
 #define __LISTA_H__
 #include "Nodo.h"
+#include "CONSTANTES.h"
 
 template <typename Dato>
 class Lista{
@@ -39,6 +40,10 @@ public:
     //PRE: La lista no debe estar vacía.
     //POST: Devuelve el dato que se encuentra en la posicion.
     Dato consultar(int posicion);
+
+    //PRE:
+    //POST:
+    int obtener_posicion(Dato dato);
 
     //PRE: El objeto Lista debe ser un objeto válido.
     //POST: Devuelve true si la lista está vacía, false en caso contrario.
@@ -100,7 +105,6 @@ void Lista <Dato>::alta(Dato dato, int posicion){
         nuevo -> cambiar_siguiente(aux -> obtener_siguiente());
         aux -> cambiar_siguiente(nuevo);
     }
-
     tamanio++;
 }
 
@@ -133,6 +137,29 @@ Dato Lista <Dato>::consultar(int posicion){
 }
 
 template <typename Dato>
+int Lista<Dato>::obtener_posicion(Dato dato){
+    bool elem_encontrado = false;
+    int i = 1;
+    Nodo<Dato>* actual = primero;
+
+    while(!elem_encontrado && i <= obtener_tamanio()){
+        if(actual->obtener_dato() == dato){
+            elem_encontrado = true;
+        }
+
+        i++;
+        actual = actual->obtener_siguiente();
+    }
+
+    //if(!elem_encontrado){
+    //    return POSICION_NO_ENCONTRADA;
+    //}
+
+    return i - 2;   // Ya que esta lista empieza con el indice 1 y no 0
+}
+
+
+template <typename Dato>
 bool Lista <Dato>::vacia(){
     return tamanio == 0;
 }
@@ -152,7 +179,6 @@ template <typename Dato>
 void Lista <Dato>::inicializar(){
     cursor = primero;
 }
-
 
 template <typename Dato> bool Lista <Dato>::hay_actual(){
     return (cursor != 0);
