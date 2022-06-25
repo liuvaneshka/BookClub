@@ -108,7 +108,7 @@ bool Menu::selector_menu(){
 
         case 12:
             cout << VERDE << "Caso 12: Tiempo mínimo de lectura" << endl;
-            //tiempo_minimo();
+            opciones.tiempo_minimo();
             estado = true;
             break;
 
