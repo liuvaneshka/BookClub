@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Hash Parser::procesar_escritor(string ruta, Hash tabla){
+Hash<string, Escritor*>* Parser::procesar_escritor(string ruta,Hash<string, Escritor*>* tabla){
 
     string nombre, nacionalidad, lectura, isni;
     int nacimiento, fallecimiento;
@@ -54,19 +54,20 @@ Hash Parser::procesar_escritor(string ruta, Hash tabla){
                 fallecimiento = DESCONOCIDO;
             }
             Escritor* escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
-            tabla.agregar_lista(isni, escritor);
+
+            tabla->agregar_lista(isni, escritor);
 
         }
 
     }
     entrada.cerrar_archivo();
     std::cout << "hash " << std::endl;
-    tabla.imprimir_tabla();
+    tabla->imprimir_tabla();
     return tabla;
 }
 
 
-Lista_lecturas* Parser::procesar_lectura(string ruta, Lista_lecturas* lista_lecturas, Hash tabla){
+Lista_lecturas* Parser::procesar_lectura(string ruta, Lista_lecturas* lista_lecturas, Hash<string, Escritor*>* tabla){
 
     Escritor* escritor;
     string dato, titulo, tipo, libro, tema_linea;
@@ -169,17 +170,14 @@ bool Parser::verificar_escritor(string linea_escritor){
     return linea_escritor != "ANONIMO";
 }
 
-
-Escritor* Parser::obtener_escritor(string linea, Hash tabla){
+Escritor* Parser::obtener_escritor(string linea, Hash<string, Escritor*>* tabla){
     Escritor* escritor;
 
     if (verificar_escritor(linea)){
-        escritor = tabla.encontrar_dato(linea);
-        std::cout <<  "**************** " << escritor->obtener_nombre() << std::endl;
+        escritor = tabla->encontrar_dato(linea);
     }
     else{
         escritor = nullptr;
-        std::cout << "---------------  ANONIMO" << std::endl;
     }
     return escritor;
 }

@@ -3,10 +3,9 @@
 //
 
 #include "Opciones.h"
-#include "Parser.h"
 
 
-Opciones::Opciones(Hash tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas){
+Opciones::Opciones(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas){
     this->tabla = tabla;
     this->lista_lecturas = lista_lecturas;
     this->cola_lecturas = cola_lecturas;
@@ -75,41 +74,31 @@ Escritor* Opciones::crear_escritor() {
     Escritor *nuevo_escritor;
     Escritor *escritor_hallado;
     string nuevo_isni;
+    nuevo_isni = printer.pedir_isni();
+    nuevo_isni = "(" + nuevo_isni +  ")";
 
-    string nombre = printer.pedir_nombre();
 
-    if(nombre != "ANONIMO"){
-        escritor_hallado = tabla.encontrar_por_nombre(nombre);
+    if(nuevo_isni != "0"){
+        escritor_hallado = tabla->encontrar_dato(nuevo_isni);
+        cout << escritor_hallado<< endl;
         if (escritor_hallado != nullptr) {
             nuevo_escritor = escritor_hallado;
             cout << "Escritor existente\n" << endl;
         }
         else{
+            string nombre = printer.pedir_nombre();
             string nacionalidad = printer.pedir_nacionalidad();
             int nacimiento = printer.pedir_nacimiento();
             int fallecimiento = printer.pedir_fallecimiento();
 
             nuevo_escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
-            nuevo_isni = generar_isni();
-            tabla.agregar_lista(nuevo_isni, nuevo_escritor);
+            tabla->agregar_lista(nuevo_isni, nuevo_escritor);
+            tabla->imprimir_tabla();
         }
     } else
         nuevo_escritor = nullptr;
 
     return nuevo_escritor;
-}
-
-string Opciones::generar_isni(){
-    string isni = "" ;
-    isni = printer.pedir_isni();
-    isni = "(" + isni +  ")";
-    std::cout << isni << std::endl;
-    while(tabla.encontrar_dato(isni) != nullptr){
-        isni = printer.pedir_isni();
-        isni = "(" + isni +  ")";
-    }
-    std::cout << isni << std::endl;
-    return isni;
 }
 
 void Opciones::listar_lecturas(){
@@ -124,6 +113,10 @@ void Opciones::listar_lecturas(){
         lista_lecturas->siguiente();
         contador++;
     }
+}
+
+void Opciones::listar_escriores(){
+    tabla->imprimir_tabla();
 }
 
 
@@ -167,9 +160,10 @@ void Opciones::actualizar_cola(Lectura* lectura_eliminada){
 
 
 void Opciones::modificar_fallecimiento(){
-    tabla.imprimir_tabla();
-    string nombre_escritor = printer.pedir_nombre();
-    Escritor* escritor_a_modificar = tabla.encontrar_por_nombre( nombre_escritor);
+    tabla->imprimir_tabla();
+    string isni = printer.pedir_isni();
+    isni = "(" + isni + ")";
+    Escritor* escritor_a_modificar = tabla->encontrar_dato(isni);
     int nuevo_fallecimiento = printer.pedir_fallecimiento();
 
     if (escritor_a_modificar == nullptr)

@@ -39,17 +39,17 @@ private:
 
     //PRE: linea es una linea leida del archivo de Lecturas.
     //POST: Devuelve el escritor, de no existir, devueleve nullptr.
-    Escritor* obtener_escritor(string linea,  Hash tabla);
+    Escritor* obtener_escritor(string linea, Hash<string, Escritor*>* tabla);
 
 public:
 
     //PRE: ruta debe ser una ruta válida.
     //POST: Lee el archivo de escritores, crea los objetos y los almacena en lista_escritores.
-    Hash procesar_escritor(string ruta, Hash tabla);
+    Hash<string, Escritor*>* procesar_escritor(string ruta,Hash<string, Escritor*>* tabla);
 
     //PRE: ruta debe ser una ruta válida.
     //POST: Lee el archivo de lecturas, crea los objetos y los almacena en lista_lecturas.
-    Lista_lecturas* procesar_lectura(string ruta,  Lista_lecturas *lista_lectura, Hash tabla);
+    Lista_lecturas* procesar_lectura(string ruta,  Lista_lecturas *lista_lectura, Hash<string, Escritor*>* tabla);
 
 };
 #endif // __PARSER_H__

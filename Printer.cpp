@@ -79,6 +79,7 @@ string Printer::pedir_tema(){
 string Printer::pedir_isni(){
     string isni;
     cout << AZUL << "Ingrese isni del escritor: ";
+    cout << ROJO << " Ingrese 0 si es ANONIMO : ";
     cin.ignore();
     getline(cin, isni);
     return isni;

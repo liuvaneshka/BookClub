@@ -1,81 +1,128 @@
-//
-// Created by liuvaneshka on 17/06/22.
-//
-
-#ifndef HASH_H
-#define HASH_H
-#include "CONSTANTES.h"
-#include "Lista.h"
+#ifndef __HASH_H__
+#define __HASH_H__
+#include <iostream>
+#include <vector>
 #include "Escritor.h"
 
-class Hash {
+using namespace std;
 
+template <class T1, class T2> class List{
+public:
+    T1 llave;
+    T2 valor;
+    List *siguiente;
+
+    List(T1 llave, T2 valor){
+        this->llave = llave;
+        this->valor = valor;
+        this->siguiente = nullptr;
+    }
+};
+
+
+template <class T1, class T2> class Hash{
 private:
+    vector<List<T1, T2>*> indices;
 
-    struct Lista{
-        string llave; // llave
-        Escritor* escritor; // dato
-        struct Lista* siguiente; // dir sig Lista
-    };
+    int valor_hash(T1 llave){
+        int hash = 0 , i = 1;
 
-    Lista* tabla_hash[N];// se crea la tabla, con su cantidad de buckets
+        while(llave[i] != ')'){
+
+            hash = hash + (int)llave[i];
+            i++;
+        }
+        return(hash % N); // devuelve el indice
+    }
+
+    void insertar_en_indice(int indice, T1 llave, T2 valor){
+        if(indices.at(indice) == nullptr){
+            cout << "NUEVO NODO" << llave << endl;
+            List<T1, T2> *nodo =  new List<T1, T2>(llave, valor);
+            indices[indice] = nodo;
+            cout << indice << endl;
+
+        }
+        else{
+            List<T1, T2> *puntero = indices[indice];// apnta al primer
+            if(puntero->llave == llave){
+                puntero->valor = valor;
+                return;
+            }
+
+            while(puntero->siguiente != nullptr){
+                puntero = puntero->siguiente;
+
+                if(puntero->llave == llave){
+                    puntero->valor = valor;
+                    return;
+                }
+            }
+
+            List<T1, T2> *nodo = new List<T1, T2>(llave, valor);
+            puntero->siguiente = nodo;
+
+        }
+
+    }
 
 public:
 
-    //post: construye la tabal hash
-    Hash();
+    void agregar_lista(T1 llave, T2 valor){
+        int indice = valor_hash(llave);
 
-    //post: destruye la tabla
-    ~Hash();
+        if(((int)indices.size()) < (indice + 1)){
+            indices.resize((indice + 1), nullptr);
+            cout << "resize  " << llave << " Indice "  << indice  <<endl;
+        }
 
-    //pre: recibe una cadena
-    //post: genera una clave
-    int valor_hash(string llave);
+        insertar_en_indice(indice, llave, valor);
+    }
 
-    //pre: recibe una cadena para generar la clave, y el objeto a introducir
-    //post: agrega un Lista a la lista
-    void agregar_lista(string isni, Escritor* escritor);
+    void imprimir_tabla(){
+        if(indices.empty()){
+            cout << "Tabla vacia: " << endl;
+        }
+        else{
+            for(int i = 0; i < (int)indices.size(); i++){
 
-    //pre: indice debe ser un entero
-    //post: retorna la cantidad de Listas dentro de un bucket o indice
-    int cantidad_lista_en_indice(int indice);
+                if (indices[i] != nullptr){
+                    cout << "   INDICE       " << i << "  -->  " << endl;
 
-    //post: imprime los primeros Listas de cada bucket, y cuandos Listas contiene c/u
-    void imprimir_tabla();
+                    List<T1, T2> *puntero = indices[i];
+                    Escritor * escritor;
 
-    //pre: recibe un indice entero
-    //post: imprime los valores dentro de cada indice
-    void imprimir_lista(int indice);
+                    while(puntero != nullptr){
+                        cout << "ISNI: " << puntero->llave << endl;
+                        escritor = puntero->valor;
+                        escritor->mostrar_escritor();
+                        puntero = puntero->siguiente;
+                    }
+                }
+            }
+        }
+    }
 
-    //pre: recibe una cadena representando la llave
-    //post: busca el objeto asociado a la llave
-    Escritor* encontrar_dato(string llave);
+    T2 encontrar_dato(T1 llave) {
+        T2 valor = nullptr;
+        for (int i = 0; i < (int) indices.size(); i++) {
 
-    //pre: recibe una entero representado el indice y una cadena
-    //post: busca el objeto asociado a la cadena y retorna su direccion
-    Escritor* buscar_lista(int indice, string nombre);
+            if (indices[i] != nullptr) {
 
-    //pre: recibe una cadena
-    //post: busca el objeto asociado a la cadena devuelve puntero al objeto
-    Escritor* encontrar_por_nombre(string nombre);
+                List<T1, T2> *puntero = indices[i];
 
-    //pre:
-    //post: lista los escritores
-    void listar_escritor();
+                while (puntero != nullptr) {
+                    if (puntero->llave == llave){
+                        valor = puntero->valor;
+                    }
+                    puntero = puntero->siguiente;
+                }
+            }
+        }
+        return valor;
+    }
 
-    //pre:
-    //post: imprime los nombres del objeto dado el bucket escritores
-    void imprimir_nombre(int indice);
 
-    //pre:
-    //post: imprime los nombres del objeto dado el bucket escritores
-    bool buscar_llave(string llave);
-
-    void eliminar_lista(string llave);
-
-    void borrar_tabla();
-
-    };
-
+};
 
 #endif

@@ -3,13 +3,12 @@
 
 Menu::Menu(){
 
-    Hash tabla;
     Lista_lecturas *lista_lecturas = new Lista_lecturas;
     cola_lecturas = nullptr;
-
+    Hash<string, Escritor*> *tabla = new Hash<string, Escritor*>;
 
     Parser parser;
-    this-> tabla = parser.procesar_escritor(ARCHIVO_ESCRITORES, tabla);
+    this->tabla = parser.procesar_escritor(ARCHIVO_ESCRITORES, tabla);
     this->lista_lecturas = parser.procesar_lectura(ARCHIVO_LECTURAS, lista_lecturas, tabla);
 
     srand( (unsigned int) time(0));
@@ -64,7 +63,7 @@ bool Menu::selector_menu(){
 
         case 5:
             cout << VERDE << "Caso 5: Listar los escritores" << endl;
-            tabla.imprimir_tabla();
+            opciones.listar_escriores();
             estado = true;
             break;
 
@@ -88,9 +87,9 @@ bool Menu::selector_menu(){
 
         case 9:
             cout << VERDE << "Caso 9: Listar lecturas por escritor" << endl;
-            tabla.listar_escritor();
+            //tabla.listar_escritor();
             cout << endl;
-            opciones.listar_por_escritor();
+            //opciones.listar_por_escritor();
             estado = true;
             break;
 

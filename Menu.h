@@ -34,7 +34,7 @@ private:
 
     int opcion;
     Printer printer;
-    Hash tabla;
+    Hash <string, Escritor*>* tabla;
     Lista_lecturas* lista_lecturas;
     Cola<Lectura*>* cola_lecturas;
     Grafo_lecturas* grafo_lecturas;

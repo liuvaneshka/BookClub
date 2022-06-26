@@ -27,12 +27,13 @@
 #include "Nodo.h"
 //Para grafos
 #include "Grafo_lecturas.h"
+#include "Escritor.h"
 
 
 class Opciones {
 
 private:
-    Hash tabla;
+    Hash<string, Escritor*>* tabla;
     Printer printer;
     Lista_lecturas* lista_lecturas;
     Cola<Lectura*>* cola_lecturas;
@@ -43,9 +44,6 @@ private:
     //POST: Pide al usuario los atributos necesarios y crea al Escritor.
     Escritor* crear_escritor();
 
-    //PRE: -
-    //POST: Pide al usuario isni.
-    string generar_isni();
 
     //PRE: La lista_lecturas debe estar bien definida.
     //POST: Crea una cola de lecturas, ordenada por minutos de lectura.
@@ -72,7 +70,7 @@ private:
 public:
     //pre: recibe un objeto tipo hash y una lista de objetos -lecturas-
     //post: construye las opciones con el objeto y lista
-    Opciones(Hash tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas);
+    Opciones(Hash<string, Escritor*>* tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas);
 
     //PRE: -
     //POST: Destruye las opciones.
@@ -94,6 +92,8 @@ public:
     //PRE: lista_lecturas.vacia() = false.
     //POS: Muestra la informacion de las lecturas que pertenecen a la lista.
     void listar_lecturas();
+
+    void listar_escriores();
 
     //PRE: La lista_lecturas debe estar bien definida.
     /*POST: Quita de lista_lecturas la lectura ingresada por el usuario.
