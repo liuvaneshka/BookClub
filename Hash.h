@@ -123,6 +123,19 @@ public:
     }
 
 
+    void vaciar_tabla(){
+        if(indices.empty()){
+            cout << "Tabla vacia: " << endl;
+        }
+        else{
+            for(int i = 0; i < (int)indices.size(); i++){
+                if (indices[i] != nullptr){
+                    indices.clear();
+                }
+            }
+        }
+    }
+
 };
 
 #endif
