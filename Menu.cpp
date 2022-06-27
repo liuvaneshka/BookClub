@@ -15,8 +15,9 @@ Menu::Menu(){
 }
 
 Menu::~Menu(){
-
-    //tabla->vaciar_tabla();
+    
+    tabla->vaciar_tabla();
+    delete tabla;
     delete lista_lecturas;
     if (cola_lecturas)
         delete cola_lecturas;
