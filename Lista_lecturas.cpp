@@ -125,6 +125,35 @@ void Lista_lecturas::listar_entre_anios(int desde, int hasta){
     }
 }
 
+void Lista_lecturas::listar_por_escritor(string nombre_escritor){
+    bool hay_lecturas = false;
+
+    lista_lecturas.inicializar();
+    while(lista_lecturas.hay_actual()){
+        Lectura* lectura_actual = lista_lecturas.obtener_dato_cursor();
+        Escritor* escritor_actual = lectura_actual->obtener_escritor();
+
+        if (escritor_actual != nullptr && escritor_actual->obtener_nombre() == nombre_escritor){
+            hay_lecturas = true;
+            cout << '\n';
+            lectura_actual->mostrar_lectura();
+        }
+        lista_lecturas.siguiente();
+    }
+
+    if (!hay_lecturas)
+        cout << "\nNo existen lecturas escritas por el Escritor ingresado, intente nuevamente\n" << endl;
+}
+
+void Lista_lecturas::listar_por_genero(generos genero){
+    lista_lecturas.inicializar();
+    while(lista_lecturas.hay_actual()){
+        Lectura* lectura_actual = lista_lecturas.obtener_dato_cursor();
+        lectura_actual->imprimir_novela_genero(genero);
+        lista_lecturas.siguiente();
+    }
+}
+
 int Lista_lecturas::obtener_tamanio_lecturas(){
     return lista_lecturas.obtener_tamanio();
 }
