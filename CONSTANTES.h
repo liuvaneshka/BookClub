@@ -11,6 +11,7 @@ enum generos {DRAMA = 1, COMEDIA, FICCION, SUSPENSO,
 const std::string POEMA = "P";
 const std::string NOVELA = "N";
 const std::string CUENTO = "C";
+const std::string _HISTORICA = "H";
 
 const int DESCONOCIDO = -1;
 
