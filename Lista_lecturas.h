@@ -79,7 +79,15 @@ public:
     //PRE: lista_lecturas.vacia() = false, tienen que ser anios validos.
     //POS: Muestra la informacion de las lecturas publicados entre dos anios particulares (siempre que pertenezcan a la lista).
     void listar_entre_anios(int desde, int hasta);
+    
+    //PRE: lista_lecturas.vacia() = false.
+    //POS: Muestra la informacion de las lecturas escritos por un escritor en particular (siempre que pertenezcan a la lista).
+    void listar_por_escritor(string nombre_escritor);
 
+    //PRE: lista_lecturas.vacia() = false.
+    //POS: Muestra la informacion de las Novelas de un genero en paricular (siempre que pertenezcan a la lista).
+    void listar_por_genero(generos genero);
+    
     int obtener_tamanio_lecturas();
 
 
