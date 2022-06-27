@@ -190,35 +190,13 @@ void Opciones::listar_lecturas_entre_anios(){
 }
 
 void Opciones::listar_por_escritor(){
-
     string nombre_escritor = printer.pedir_nombre();
-    bool hay_lecturas = false;
-
-    lista_lecturas->inicializar();
-    while(lista_lecturas->hay_actual()){
-        Lectura* lectura_actual = lista_lecturas->obtener_dato_cursor();
-        Escritor* escritor_actual = lectura_actual->obtener_escritor();
-
-        if (escritor_actual != nullptr && escritor_actual->obtener_nombre() == nombre_escritor){
-            hay_lecturas = true;
-            cout << '\n';
-            lectura_actual->mostrar_lectura();
-        }
-        lista_lecturas->siguiente();
-    }
-
-    if (!hay_lecturas)
-        cout << "\nNo existen lecturas escritas por el Escritor ingresado, intente nuevamente\n" << endl;
+    lista_lecturas->listar_por_escritor(nombre_escritor);
 }
 
 void Opciones::listar_novelas_de_genero(){
     generos genero = printer.pedir_genero();
-    lista_lecturas->inicializar();
-    while(lista_lecturas->hay_actual()){
-        Lectura* lectura_actual = lista_lecturas->obtener_dato_cursor();
-        lectura_actual->imprimir_novela_genero(genero);
-        lista_lecturas->siguiente();
-    }
+    lista_lecturas->listar_por_genero(genero);
 }
 
 
