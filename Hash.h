@@ -1,193 +1,146 @@
-//
-// Created by liuvaneshka on 17/06/22.
-//
+#ifndef __HASH_H__
+#define __HASH_H__
+#include <iostream>
+#include <vector>
+#include "Escritor.h"
 
-#ifndef HASH_H
-#define HASH_H
+using namespace std;
 
-template <typename Dato>
-class Hash{
+template <class T1, class T2> class List{
+public:
+    T1 llave;
+    T2 valor;
+    List *siguiente;
 
+    List(T1 llave, T2 valor){
+        this->llave = llave;
+        this->valor = valor;
+        this->siguiente = nullptr;
+    }
+};
+
+
+template <class T1, class T2> class Hash{
 private:
+    vector<List<T1, T2>*> indices;
 
-    static const int n = 25; // lambda = 0.8, lambda = clave/n un numero primo al menos 1.3 veces mas de las claves
+    int valor_hash(T1 llave){
+        int hash = 0 , i = 1;
 
-    struct Item{
-        string llave;
-        Dato* dato;
-        struct Item* siguiente;
-    };
+        while(llave[i] != ')'){
 
-    Item* tabla_hash[n];// se crea la tabla, con su cantidad de buckets
+            hash = hash + (int)llave[i];
+            i++;
+        }
+        return(hash % N); // devuelve el indice
+    }
+
+    void insertar_en_indice(int indice, T1 llave, T2 valor){
+        if(indices.at(indice) == nullptr){
+            //cout << "NUEVO NODO" << llave << endl;
+            List<T1, T2> *nodo =  new List<T1, T2>(llave, valor);
+            indices[indice] = nodo;
+            //cout << indice << endl;
+
+        }
+        else{
+            List<T1, T2> *puntero = indices[indice];// apnta al primer
+            if(puntero->llave == llave){
+                puntero->valor = valor;
+                return;
+            }
+
+            while(puntero->siguiente != nullptr){
+                puntero = puntero->siguiente;
+
+                if(puntero->llave == llave){
+                    puntero->valor = valor;
+                    return;
+                }
+            }
+
+            List<T1, T2> *nodo = new List<T1, T2>(llave, valor);
+            puntero->siguiente = nodo;
+
+        }
+
+    }
 
 public:
 
-    //post: construye la tabla hash
-    Hash();
+    void agregar_lista(T1 llave, T2 valor){
+        int indice = valor_hash(llave);
 
-    //pre: recibe una cadena
-    //post: genera una clave
-    int valor_Hash(string llave);
+        if(((int)indices.size()) < (indice + 1)){
+            indices.resize((indice + 1), nullptr);
+            //cout << "resize  " << llave << " Indice "  << indice  <<endl;
+        }
 
-    //pre: recibe una cadena para generar la clave, y el dato a introducir
-    //post: agrega un item a la lista
-    void agregar_item(string llave, Dato* dato);
+        insertar_en_indice(indice, llave, valor);
+    }
 
-    //pre: indice debe ser un entero
-    //post: retorna la cantidad de items dentro de un bucket o indice
-    int cantidad_items_en_indice(int indice);
+    void imprimir_tabla(){
+        if(indices.empty()){
+            //cout << "Tabla vacia: " << endl;
+        }
+        else{
+            for(int i = 0; i < (int)indices.size(); i++){
 
-    //post: imprime los primeros items de cada bucket, y cuandos items contiene c/u
-    void imprimir_tabla();
+                if (indices[i] != nullptr){
+                    //cout << "   INDICE       " << i << "  -->  " << endl;
 
-    //pre: recibe un indice entero
-    //post: imprime los valores dentro de cada indice
-    void imprimir_items(int indice);
+                    List<T1, T2> *puntero = indices[i];
+                    Escritor * escritor;
 
-    //pre: recibe una cadena representando la llave
-    //post: busca el dato asociado a la llave
-    Dato* encontrar_dato(string llave);
+                    while(puntero != nullptr){
+                        //cout << "ISNI: " << puntero->llave << endl;
+                        escritor = puntero->valor;
+                        escritor->mostrar_escritor();
+                        puntero = puntero->siguiente;
+                    }
+                }
+            }
+        }
+    }
 
-    //pre: recibe una cadena representando la llave
-    //post: elimina el elemento
-    //void eliminar_item(string llave);
+    T2 encontrar_dato(T1 llave) {
+        T2 valor = nullptr;
+        for (int i = 0; i < (int) indices.size(); i++) {
+
+            if (indices[i] != nullptr) {
+
+                List<T1, T2> *puntero = indices[i];
+
+                while (puntero != nullptr) {
+                    if (puntero->llave == llave){
+                        valor = puntero->valor;
+                    }
+                    puntero = puntero->siguiente;
+                }
+            }
+        }
+        return valor;
+    }
+
+
+    void vaciar_tabla(){
+
+        for(int i = 0; i < (int)indices.size(); i++){
+
+            if (indices[i] != nullptr){
+                List<T1, T2> *puntero = indices[i];
+
+                while(puntero != nullptr){
+                    List<T1, T2> *anterior = puntero;
+                    puntero = puntero->siguiente;
+                    Escritor* eliminar = anterior->valor;
+                    delete eliminar;
+                    delete anterior;
+                }
+            }
+        }
+    }
+
 };
-
-template <typename Dato>
-
-Hash<Dato>::Hash(){
-    for(int i = 0; i < n; i++){
-        tabla_hash[i] = new Item;
-        tabla_hash[i]->llave = "";
-        tabla_hash[i]->dato = nullptr;
-        tabla_hash[i]->siguiente = nullptr;
-    }
-}
-
-template <typename Dato>
-
-int Hash<Dato>::valor_Hash(string llave)
-{
-    int hash = 0;
-    int tamanio = (int)(llave).length();
-
-    for(int i = 1; i < tamanio; i++){//i = 0; remover if;
-        if((llave[i] != ')')){
-            hash = hash + (int)llave[i];
-        }
-    }
-
-    return(hash % n); // devuelve el indice
-}
-
-template <typename Dato>
-void Hash<Dato>::agregar_item(string llave , Dato* dato) {
-
-    int indice = valor_Hash(llave);
-
-    if(tabla_hash[indice]->dato == nullptr){
-        tabla_hash[indice]->llave = llave;
-        tabla_hash[indice]->dato = dato;
-    }
-    else{
-        Item* puntero = tabla_hash[indice]; // apnta al primer
-        Item* nuevo= new Item; // crea una nueva lista de elementos
-        nuevo->llave = llave;
-        nuevo->dato = dato;
-        nuevo->siguiente = nullptr;
-
-        while(puntero->siguiente != nullptr){
-            puntero = puntero->siguiente;
-        }
-        puntero->siguiente = nuevo;
-    }
-}
-
-template <typename Dato>
-int Hash<Dato>::cantidad_items_en_indice(int indice) {
-    int contador = 0;
-
-    if(tabla_hash[indice]->llave == ""){
-        return contador;
-    }
-    else{
-        contador++;
-        Item* puntero = tabla_hash[indice];
-        while(puntero->siguiente != nullptr){
-            contador++;
-            puntero = puntero->siguiente;
-        }
-    }
-    return contador;
-}
-
-template <typename Dato>
-void Hash<Dato>::imprimir_tabla() {
-    int cantidad_elementos;
-    for(int i = 0; i < n; i++){
-
-        cantidad_elementos = cantidad_items_en_indice(i);
-
-        std::cout << "Indice = " << i << std::endl;
-
-         if(cantidad_elementos > 0){
-             std::cout << "******************" << std::endl;
-             imprimir_items(i);
-             std::cout <<"  cantidad de items por indice = " << cantidad_elementos << std::endl;
-             std::cout << "******************" << std::endl;
-
-         }
-    }
-}
-
-template <typename Dato>
-void Hash<Dato>::imprimir_items(int indice) {
-    Item* puntero = tabla_hash[indice];
-    if(puntero->dato != nullptr){
-        std::cout << indice << "  contiene los siguientes " << std::endl;
-
-        while(puntero != nullptr){
-            std::cout << puntero->dato << std::endl;//remover el ->obtener_nombre()
-            std::cout << puntero->llave << std::endl;
-
-            puntero = puntero->siguiente;
-        }
-    }
-}
-
-template <typename Dato>
-Dato* Hash<Dato>::encontrar_dato(string llave) {
-    int indice = valor_Hash(llave);
-    bool encontrado = false;
-    Dato* dato;
-
-    Item* puntero = tabla_hash[indice];
-    while(puntero != nullptr){
-        if(puntero->llave == llave){
-            encontrado = true;
-            dato = puntero->dato;
-        }
-        puntero = puntero->siguiente;
-    }
-
-    if(!encontrado)
-        dato = nullptr;
-
-    return dato;
-}
-/*
-template <typename Dato>
-void Hash<Dato>::eliminar_item(string llave) {
-
-    int indice = Hash(llave);
-
-    lista* puntero_eliminar;
-    lista* puntero;
-    lista* aux;
-
-
-
-}
-*/
 
 #endif
