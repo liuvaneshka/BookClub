@@ -124,13 +124,18 @@ public:
 
 
     void vaciar_tabla(){
-        if(indices.empty()){
-            cout << "Tabla vacia: " << endl;
-        }
-        else{
-            for(int i = 0; i < (int)indices.size(); i++){
-                if (indices[i] != nullptr){
-                    indices.clear();
+
+        for(int i = 0; i < (int)indices.size(); i++){
+
+            if (indices[i] != nullptr){
+                List<T1, T2> *puntero = indices[i];
+
+                while(puntero != nullptr){
+                    List<T1, T2> *anterior = puntero;
+                    puntero = puntero->siguiente;
+                    Escritor* eliminar = anterior->valor;
+                    delete eliminar;
+                    delete anterior;
                 }
             }
         }
