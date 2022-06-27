@@ -268,10 +268,8 @@ void Opciones::marcar_como_leida(){
     cout << VERDE << "Proxima lectura: " << endl;
     Lectura* prox_lectura = cola_lecturas->consultar();
     prox_lectura -> mostrar_lectura();
-
-    cout << AZUL << "\nDesea marcar la lectura de la cola como leida?" << endl;
-    cout << VERDE << " (S.Si / N.No): ";
-    cin >> opcion;
+    
+    opcion = printer.opcion_leer();
 
     if (tolower(opcion) == 's'){
         if (cola_lecturas->vacia())
