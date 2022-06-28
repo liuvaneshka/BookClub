@@ -118,7 +118,7 @@ int Impresor::pedir_nacimiento(){
 int Impresor::pedir_fallecimiento(){
     int fallecimiento;
     cout << AZUL << "Ingrese el año de fallecimiento: " << endl;
-    cout << VERDE << "(si es desconocida o continua vivo, ingerse -1): ";
+    cout << VERDE << "(si es desconocida o continua vivo, ingrese -1): ";
     cin >> fallecimiento;
     return fallecimiento;
 }
