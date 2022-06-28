@@ -57,7 +57,7 @@ const string ERROR_POR_ANIOS = "\nNo hay lecturas entre los anios ingresados\n";
 const string ERROR_POR_ESCRITOR = "\nNo existen lecturas escritas por el Escritor ingresado, intente nuevamente\n";
 const string ERROR_POR_GENERO = "\nNo existen lecturas del género especificado, intente nuevamente.\n";
 const string ANIOS_INVALIDOS = "\nAños inválidos, intente nuevamente\n";
-const string AVISO_FALLECIMIENTO_VALIDO = "El fallecimiento debe ser después de el anio de nacimiento: ";
+const string AVISO_FALLECIMIENTO_VALIDO = "El fallecimiento debe ser después del anio de nacimiento: ";
 
 //Colores
 const string NEGRO = "\e[1;30m";
