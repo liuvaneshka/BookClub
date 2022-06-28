@@ -55,6 +55,10 @@ public:
     string pedir_nombre();
 
     //PRE: -
+    //POS: Le solicita al usuario que ingrese un nombre para ser procesado.
+    string pedir_nombre_escritor();
+
+    //PRE: -
     //POS: le solicita al usuario que ingrese la nacionalidad de un escritor, si es desconocido se pide ingresar '¿?'.
     string pedir_nacionalidad();
 

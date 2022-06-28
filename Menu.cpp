@@ -89,9 +89,7 @@ bool Menu::selector_menu(){
 
         case 9:
             cout << VERDE << "Caso 9: Listar lecturas por escritor" << endl;
-            //tabla.listar_escritor();
-            cout << endl;
-            //opciones.listar_por_escritor();
+            opciones.listar_por_escritor();
             estado = true;
             break;
 

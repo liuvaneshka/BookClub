@@ -87,6 +87,13 @@ string Impresor::pedir_isni(){
 string Impresor::pedir_nombre(){
     string nombre;
     cout << AZUL << "Ingrese el nombre del escritor: ";
+    getline(cin, nombre);
+    return nombre;
+}
+
+string Impresor::pedir_nombre_escritor(){
+    string nombre;
+    cout << AZUL << "Ingrese el nombre del escritor: ";
     cin.ignore();
     getline(cin, nombre);
     return nombre;

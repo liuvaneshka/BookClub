@@ -72,9 +72,8 @@ Escritor* Opciones::crear_escritor() {
     nuevo_isni = impresor.pedir_isni();
     nuevo_isni = "(" + nuevo_isni +  ")";
 
-    if(nuevo_isni != ANONIMO){
+    if(nuevo_isni != "(0)"){
         escritor_hallado = tabla->encontrar_dato(nuevo_isni);
-        //cout << escritor_hallado << endl;
         if (escritor_hallado != nullptr) {
             nuevo_escritor = escritor_hallado;
             cout << ESCRITOR_EXISTENTE << endl;
@@ -87,7 +86,7 @@ Escritor* Opciones::crear_escritor() {
 
             nuevo_escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
             tabla->agregar_lista(nuevo_isni, nuevo_escritor);
-            tabla->imprimir_tabla();
+            //tabla->imprimir_tabla(LLAVE);
         }
     } else
         nuevo_escritor = nullptr;
@@ -100,7 +99,7 @@ void Opciones::listar_lecturas(){
 }
 
 void Opciones::listar_escritores(){
-    tabla->imprimir_tabla();
+    tabla->imprimir_tabla(VALOR);
 }
 
 void Opciones::quitar_lectura(){
@@ -141,17 +140,19 @@ void Opciones::actualizar_cola(Lectura* lectura_eliminada){
 }
 
 void Opciones::modificar_fallecimiento(){
-    tabla->imprimir_tabla();
+    tabla->imprimir_tabla(LLAVE);
     string isni = impresor.pedir_isni();
     isni = "(" + isni + ")";
 
     Escritor* escritor_a_modificar = tabla->encontrar_dato(isni);
+    cout << AVISO_FALLECIMIENTO_VALIDO << escritor_a_modificar->obtener_anio_nacimiento() << endl;
     int nuevo_fallecimiento = impresor.pedir_fallecimiento();
 
     if (escritor_a_modificar == nullptr)
         cout << ROJO << ESCRITOR_INEXISTENTE << endl;
 
     else if (nuevo_fallecimiento == -1 || nuevo_fallecimiento > escritor_a_modificar->obtener_anio_nacimiento()){
+
         escritor_a_modificar -> modificar_fallecimiento(nuevo_fallecimiento);
         cout << AZUL << ACTUALIZACION_EXITOSA << endl;
     }
@@ -179,9 +180,9 @@ void Opciones::listar_lecturas_entre_anios(){
 
 void Opciones::listar_por_escritor(){
     char opcion = SI;
-
+    tabla->imprimir_tabla(NOMBRE);
     while(opcion == SI){
-        string nombre_escritor = impresor.pedir_nombre();
+        string nombre_escritor = impresor.pedir_nombre_escritor();
         lista_lecturas->listar_por_escritor(nombre_escritor);
         opcion = impresor.seguir_listando();
     }

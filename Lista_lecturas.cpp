@@ -10,6 +10,7 @@ Lista_lecturas::~Lista_lecturas(){
         delete eliminar;
         baja(1);
     }
+    delete lista_lecturas;
 }
 
 int Lista_lecturas::posicion_segun_anio(Lectura* lectura){

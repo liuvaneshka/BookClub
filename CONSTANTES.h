@@ -57,6 +57,7 @@ const string ERROR_POR_ANIOS = "\nNo hay lecturas entre los anios ingresados\n";
 const string ERROR_POR_ESCRITOR = "\nNo existen lecturas escritas por el Escritor ingresado, intente nuevamente\n";
 const string ERROR_POR_GENERO = "\nNo existen lecturas del género especificado, intente nuevamente.\n";
 const string ANIOS_INVALIDOS = "\nAños inválidos, intente nuevamente\n";
+const string AVISO_FALLECIMIENTO_VALIDO = "El fallecimiento debe ser después de el anio de nacimiento: ";
 
 //Colores
 const string NEGRO = "\e[1;30m";
@@ -85,5 +86,10 @@ const int HISTORICA_NOVELA = 60;
 
 // Constantes para el grafo
 const int INFINITO = 9999999;
+
+//Constantes imprimir tabla
+const int VALOR = 1;
+const int LLAVE = 2;
+const int NOMBRE = 3;
 
 #endif // __CONSTANTES_H__
