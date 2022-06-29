@@ -17,4 +17,9 @@ void Poema::mostrar_lectura(){
 }
 
 
-void Poema::imprimir_novela_genero(generos genero){}
+int Poema::imprimir_novela_genero(generos genero){return 0;}
+
+bool Poema::es_poema(){return true;}
+bool Poema::es_novela(){return false;}
+bool Poema::es_historica(){return false;}
+bool Poema::es_cuento(){return false;}

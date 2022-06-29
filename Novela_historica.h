@@ -38,7 +38,23 @@ public:
 
     //PRE: El objeto Novela_historica debe ser un objeto válido.
     //POST: Imprime por pantalla la NOvela, si genero es HISTORICA.
-    void imprimir_novela_genero(generos genero);
+    int imprimir_novela_genero(generos genero);
+
+    //PRE: -
+    //POST: Devuelve True, dado que esta es la clase Novela_historica.
+    bool es_historica();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Novela_historica.
+    bool es_cuento();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Novela_historica.
+    bool es_poema();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Novela_historica.
+    bool es_novela();
 
 };
 #endif // __NOVELA_HISTORICA_H__

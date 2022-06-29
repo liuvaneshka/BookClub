@@ -73,7 +73,17 @@ void Novela_historica::mostrar_lectura(){
         cout << "Tema: " << tema << '\n' << endl;
 }
 
-void Novela_historica::imprimir_novela_genero(generos genero){
-    if (genero == HISTORICA)
+int Novela_historica::imprimir_novela_genero(generos genero){
+    int contador = 0;
+
+    if (genero == HISTORICA){
+        contador += 1;
         mostrar_lectura();
+    }
+    return contador;
 }
+
+bool Novela_historica::es_historica(){return true;}
+bool Novela_historica::es_poema(){return false;}
+bool Novela_historica::es_novela(){return false;}
+bool Novela_historica::es_cuento(){return false;}

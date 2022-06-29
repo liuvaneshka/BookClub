@@ -29,11 +29,11 @@ public:
 
     //PRE: El objeto Lectura es un objeto válido.
     //POST: Método virtual, definido en cada subclase.
-    virtual void imprimir_novela_genero(generos genero) = 0;
+    virtual int imprimir_novela_genero(generos genero) = 0;
 
     //PRE: El objeto Lectura es un objeto válido.
     //POST: Método virtual que imprime los atributos de la Lectura (polimorfismo).
-    virtual void mostrar_lectura() = 0;
+    virtual void mostrar_lectura();
 
     //PRE: El objeto Lectura es un objeto válido.
     //POST: Devuelve el titulo de la Lectura.
@@ -58,6 +58,11 @@ public:
     int comparar_lecturas(Lectura *lectura);
 
     int comparar_lecturas(Lectura *lectura, int sobrecargar);
+
+    virtual bool es_cuento() = 0;
+    virtual bool es_poema() = 0;
+    virtual bool es_novela() = 0;
+    virtual bool es_historica() = 0;
 };
 
 #endif //TP2_LECTURA_H
