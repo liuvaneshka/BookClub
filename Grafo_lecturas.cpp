@@ -112,7 +112,7 @@ string Grafo_lecturas::obtener_tipo(Lectura* lectura){
     else if(lectura->es_novela())
         tipo_lectura = NOVELA;
     else if(lectura->es_historica())
-        tipo_lectura = HISTORICA;
+        tipo_lectura = _HISTORICA;
 
     return tipo_lectura;
 }
