@@ -1,60 +1,27 @@
 #include "Lista_lecturas.h"
-Lista_lecturas::Lista_lecturas(){
-    Lista<Lectura*> lista_lecturas;
+
+Lista_lecturas::Lista_lecturas() : Lista<Lectura*>() {
+    lista_lecturas = new Lista<Lectura*>;
 }
 
 Lista_lecturas::~Lista_lecturas(){
-    while(!lista_lecturas.vacia()){
-        Lectura* eliminar = lista_lecturas.consultar(1);
+    while(!vacia()){
+        Lectura* eliminar = consultar(1);
         delete eliminar;
-        lista_lecturas.baja(1);
+        baja(1);
     }
-}
-
-void Lista_lecturas::inicializar(){
-    lista_lecturas.inicializar();
-}
-
-bool Lista_lecturas::hay_actual(){
-    return lista_lecturas.hay_actual();
-}
-
-void Lista_lecturas::siguiente(){
-    lista_lecturas.siguiente();
-}
-
-Lectura* Lista_lecturas::obtener_dato_cursor(){
-    return lista_lecturas.obtener_dato_cursor();
-}
-
-void Lista_lecturas::alta(Lectura* lectura){
-    int posicion = posicion_segun_anio(lectura);
-    lista_lecturas.alta(lectura, posicion);
-}
-
-void Lista_lecturas::baja(int posicion){
-    Lectura* eliminar = lista_lecturas.consultar(posicion);
-    delete eliminar;
-    lista_lecturas.baja(posicion);
-}
-
-bool Lista_lecturas::vacia(){
-    return lista_lecturas.vacia();
-}
-
-Lectura* Lista_lecturas::consultar(int posicion){
-    return lista_lecturas.consultar(posicion);
+    delete lista_lecturas;
 }
 
 int Lista_lecturas::posicion_segun_anio(Lectura* lectura){
     int indice = 1;
 
-    if (!lista_lecturas.vacia()){
-        lista_lecturas.inicializar();
+    if (!vacia()){
+        inicializar();
 
-        while(lista_lecturas.hay_actual() && lectura->comparar_lecturas(lista_lecturas.consultar(indice)) != -1){
+        while(hay_actual() && lectura->comparar_lecturas(consultar(indice)) != -1){
             indice++;
-            lista_lecturas.siguiente();
+            siguiente();
         }
     }
     return indice;
@@ -63,23 +30,23 @@ int Lista_lecturas::posicion_segun_anio(Lectura* lectura){
 int Lista_lecturas::rastrear(string titulo){
     int indice = 1, indice_correspondiente = -1;
 
-    lista_lecturas.inicializar();
-    while(lista_lecturas.hay_actual() && lista_lecturas.consultar(indice)->obtener_titulo() != titulo){
+    inicializar();
+    while(hay_actual() &&consultar(indice)->obtener_titulo() != titulo){
         indice++;
-        lista_lecturas.siguiente();
+        siguiente();
     }
 
-    if(lista_lecturas.hay_actual())
+    if(hay_actual())
         indice_correspondiente = indice;
 
     return indice_correspondiente;
 }
 
 void Lista_lecturas::sortear(){
-    int num_random = rand() % lista_lecturas.obtener_tamanio() + 1;
-    cout << "numero random elegido: " << num_random << endl;
+    int num_random = rand() % obtener_tamanio() + 1;
+    //cout << "numero random elegido: " << num_random << endl;
 
-    Lectura* lectura_random = lista_lecturas.consultar(num_random);
+    Lectura* lectura_random = consultar(num_random);
 
     cout << "Lectura sorteada: " << endl;
     lectura_random->mostrar_lectura();
@@ -87,28 +54,28 @@ void Lista_lecturas::sortear(){
 
 void Lista_lecturas::listar(){
     int contador = 1;
-    lista_lecturas.inicializar();
+    inicializar();
 
-    while(lista_lecturas.hay_actual()){
+    while(hay_actual()){
         cout << "Lectura numero: "<< contador << endl;
-        Lectura* lectura_actual = lista_lecturas.obtener_dato_cursor();
+        Lectura* lectura_actual = obtener_dato_cursor();
         lectura_actual->mostrar_lectura();
 
-        lista_lecturas.siguiente();
+        siguiente();
         contador++;
     }
 }
 
 void Lista_lecturas::listar_titulos_lecturas(){
     int contador = 1;
-    lista_lecturas.inicializar();
+    inicializar();
 
-    while(lista_lecturas.hay_actual()){
+    while(hay_actual()){
         string titulo;
-        Lectura* lectura_actual = lista_lecturas.obtener_dato_cursor();
+        Lectura* lectura_actual = obtener_dato_cursor();
         cout << VIOLETA << lectura_actual->obtener_titulo() << "  **  ";
 
-        lista_lecturas.siguiente();
+        siguiente();
         contador++;
     }
     cout << endl;
@@ -118,33 +85,31 @@ void Lista_lecturas::listar_entre_anios(int desde, int hasta){
     int contador_lecturas = 0;
 
     if (desde > hasta)
-        cout << "\nAños inválidos, intente nuevamente\n" << endl;
+        cout << ANIOS_INVALIDOS << endl;
 
     else{
-        lista_lecturas.inicializar();
-        while(lista_lecturas.hay_actual()){
-            Lectura* lectura_actual = lista_lecturas.obtener_dato_cursor();
+        inicializar();
+        while(hay_actual()){
+            Lectura* lectura_actual = obtener_dato_cursor();
             int anio_lectura_actual = lectura_actual->obtener_anio();
 
             if (anio_lectura_actual >= desde && anio_lectura_actual <= hasta){
                 lectura_actual->mostrar_lectura();
                 contador_lecturas++;
              }
-            lista_lecturas.siguiente();
+            siguiente();
         }
-        if(contador_lecturas == 0)
-        cout << "\nNo hay lecturas entre los anios ingresados\n" << endl;
+        if(!contador_lecturas)
+            cout << ROJO << ERROR_POR_ANIOS << endl;
     }
-
-    
 }
 
 void Lista_lecturas::listar_por_escritor(string nombre_escritor){
      bool hay_lecturas = false;
 
-    lista_lecturas.inicializar();
-    while(lista_lecturas.hay_actual()){
-        Lectura* lectura_actual = lista_lecturas.obtener_dato_cursor();
+    inicializar();
+    while(hay_actual()){
+        Lectura* lectura_actual = obtener_dato_cursor();
         Escritor* escritor_actual = lectura_actual->obtener_escritor();
 
         if (escritor_actual != nullptr && escritor_actual->obtener_nombre() == nombre_escritor){
@@ -152,18 +117,24 @@ void Lista_lecturas::listar_por_escritor(string nombre_escritor){
             cout << '\n';
             lectura_actual->mostrar_lectura();
         }
-        lista_lecturas.siguiente();
+        siguiente();
     }
 
     if (!hay_lecturas)
-        cout << "\nNo existen lecturas escritas por el Escritor ingresado, intente nuevamente\n" << endl;
+        cout << ROJO << ERROR_POR_ESCRITOR << endl;
 }
 
 void Lista_lecturas::listar_por_genero(generos genero){
-    lista_lecturas.inicializar();
-    while(lista_lecturas.hay_actual()){
-        Lectura* lectura_actual = lista_lecturas.obtener_dato_cursor();
-        lectura_actual->imprimir_novela_genero(genero);
-        lista_lecturas.siguiente();
+
+    int contador_lecturas = 0;
+
+    inicializar();
+    while(hay_actual()){
+        Lectura* lectura_actual = obtener_dato_cursor();
+        contador_lecturas += lectura_actual->imprimir_novela_genero(genero);
+        siguiente();
     }
+
+    if (!contador_lecturas)
+        cout << ROJO << ERROR_POR_GENERO << endl;
 }

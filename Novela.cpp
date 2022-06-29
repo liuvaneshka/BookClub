@@ -37,7 +37,16 @@ string Novela::string_genero(generos genero){
     return cadena_genero;
 }
 
-void Novela::imprimir_novela_genero(generos genero){
-    if (genero == obtener_genero())
+int Novela::imprimir_novela_genero(generos genero){
+    int contador = 0;
+    if (genero == obtener_genero()){
+        contador += 1;
         mostrar_lectura();
+    }
+    return contador;
 }
+
+bool Novela::es_novela(){return true;}
+bool Novela::es_poema(){return false;}
+bool Novela::es_historica(){return false;}
+bool Novela::es_cuento(){return false;}

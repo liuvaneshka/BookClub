@@ -25,13 +25,29 @@ public:
     //PRE: El objeto Novela debe ser un objeto válido.
     //POST: Imprime los atributos de la Novela.
     void mostrar_lectura();
-    
+
     //PRE: El genero debe ser un genero válido.
     //POST: Devuelve el string correspondiente al genero del enumerado
     string string_genero(generos genero);
 
     //PRE: El objeto Novela debe ser un objeto válido.
     //POST: Imprime por pantalla la NOvela, si su género se corresponde con genero.
-    void imprimir_novela_genero(generos genero);
+    int imprimir_novela_genero(generos genero);
+
+    //PRE: -
+    //POST: Devuelve True, dado que esta es la clase Novela.
+    bool es_novela();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Novela.
+    bool es_cuento();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Novela.
+    bool es_poema();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Novela.
+    bool es_historica();
 };
 #endif // __NOVELA_H__

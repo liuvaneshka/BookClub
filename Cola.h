@@ -36,6 +36,7 @@ public:
     Dato consultar();
 };
 
+
 template <typename Dato>
 Cola<Dato>::Cola(){
     primero = nullptr;

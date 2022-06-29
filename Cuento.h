@@ -28,7 +28,23 @@ public:
 
     //PRE: Cuento debe ser un objeto válido.
     //POST: Por ser un cuento, no hace nada ya que no tiene género (polimorfimo).
-    void imprimir_novela_genero(generos genero);
+    int imprimir_novela_genero(generos genero);
+
+    //PRE: -
+    //POST: Devuelve True, dado que esta es la clase Cuento.
+    bool es_cuento();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Cuento.
+    bool es_poema();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Cuento.
+    bool es_novela();
+
+    //PRE: -
+    //POST: Devuelve False, dado que esta es la clase Cuento.
+    bool es_historica();
 
 };
 
