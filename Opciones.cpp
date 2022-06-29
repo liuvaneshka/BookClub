@@ -1,13 +1,17 @@
 #include "Opciones.h"
 
 Opciones::Opciones(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas){
+
     this->tabla = tabla;
     this->lista_lecturas = lista_lecturas;
     this->cola_lecturas = cola_lecturas;
     this->grafo_lecturas = grafo_lecturas;
 }
 
-Opciones::~Opciones(){}
+Opciones::~Opciones(){
+    delete grafo_lecturas;
+    grafo_lecturas = nullptr;
+}
 
 void Opciones::agregar_lectura(){
     Lectura* nueva_lectura = crear_lectura();
@@ -120,6 +124,8 @@ void Opciones::quitar_lectura(){
 
             if (cola_lecturas && !cola_lecturas->vacia())
                 actualizar_cola(lista_lecturas->consultar(indice_a_eliminar));
+            Lectura * eliminar =  lista_lecturas->consultar(indice_a_eliminar);
+            delete eliminar;
 
             lista_lecturas->baja(indice_a_eliminar);
             cout << AZUL << ELIMINACION_EXITOSA << endl;

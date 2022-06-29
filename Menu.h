@@ -55,6 +55,7 @@ public:
 
     Opciones* cargar(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas);
 
+
     //PRE: Menu debe ser un objeto válido.
     //POST: Impriem las opcines del Menu.
     void mostrar_menu();
@@ -65,10 +66,13 @@ public:
 
     //PRE: Menu debe ser un objeto válido.
     //POST: Dependiendo de la opcion ingresada por el usuario, se ejecuta la acción correspondiente.
+    bool selector_menu();
+
+    //PRE: Menu debe ser un objeto válido.
+    //POST: Dependiendo de la opcion ingresada por el usuario, se ejecuta la acción correspondiente.
     bool selector_menu(Opciones* opciones);
 
     void mantener_abierto_menu(Opciones *opciones);
-
 };
 
 #endif

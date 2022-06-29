@@ -20,7 +20,6 @@ Prim::Prim(int ** matriz_adyacencia, Lista<Lectura*>* vertices){
 }
 
 Prim::~Prim(){
-    std::cout << "DESTRUCTOR PRIM" << std::endl;
     delete [] vertices_visitados;
     liberar_matriz_arbol();
 }

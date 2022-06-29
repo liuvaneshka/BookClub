@@ -12,9 +12,9 @@ Grafo_lecturas::Grafo_lecturas(Lista_lecturas* lista_lecturas) : Grafo(){
 }
 
 Grafo_lecturas::~Grafo_lecturas(){
-    std::cout << "DESTRUCTOR GRAFO LECTURAS" << std::endl;
     delete [] vertices;
     delete grafo_lecturas;
+    grafo_lecturas = nullptr;
 }
 
 
@@ -114,7 +114,6 @@ string Grafo_lecturas::obtener_tipo(Lectura* lectura){
         tipo_lectura = NOVELA;
     else if(lectura->es_historica())
         tipo_lectura = _HISTORICA;
-
 
     return tipo_lectura;
 }

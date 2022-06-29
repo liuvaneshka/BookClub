@@ -28,7 +28,7 @@ void Grafo::agregar_camino(Lectura* origen, Lectura* destino, int peso) {
 void Grafo::agrandar_matriz_adyacencia() {
     int** matriz_aux;
     int nueva_cant_vertices = vertices->obtener_tamanio() + 1;
-
+    cout << "AGRANDAR " << vertices->obtener_tamanio() + 1 << endl;
     matriz_aux = new int*[nueva_cant_vertices];
     for(int i = 0; i < nueva_cant_vertices; i++){
         matriz_aux[i] = new int[nueva_cant_vertices];
@@ -57,11 +57,12 @@ void Grafo::inicializar_vertice(int** nueva_adyacente) {
 }
 
 void Grafo::liberar_matriz_adyacencia() {
-    for(int i = 0; i < vertices -> obtener_tamanio(); i++){
+    for(int i = 0; i < vertices -> obtener_tamanio() ; i++){
         delete[] matriz_adyacencia[i];
     }
     delete[] matriz_adyacencia;
 }
+
 
 void Grafo::arbol_expansion(){
     delete algoritmo_arbol_expansion;
@@ -70,10 +71,11 @@ void Grafo::arbol_expansion(){
 }
 
 Grafo::~Grafo(){
-    std::cout << "DESTRUCTOR GRAFO " << std::endl;
     liberar_matriz_adyacencia();
     matriz_adyacencia = nullptr;
     delete vertices;
+    delete algoritmo_arbol_expansion;
+
 }
 
 void Grafo::mostrar_vertices() {

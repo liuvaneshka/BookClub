@@ -6,12 +6,23 @@ Menu::Menu(){
     Lista_lecturas *lista_lecturas = new Lista_lecturas;
     Hash<string, Escritor*> *tabla = new Hash<string, Escritor*>;
     cola_lecturas = nullptr;
-
+    grafo_lecturas = nullptr;
 
     Opciones* opciones = cargar(tabla, lista_lecturas, cola_lecturas, grafo_lecturas);
     inicializar_semilla();
     mantener_abierto_menu(opciones);
     delete opciones;
+}
+
+Menu::~Menu(){
+
+    tabla->vaciar_tabla();
+    delete tabla;
+    delete lista_lecturas;
+    if (cola_lecturas)
+        delete cola_lecturas;
+    delete grafo_lecturas;
+    grafo_lecturas = nullptr;
 
 }
 
@@ -30,16 +41,6 @@ Opciones* Menu::cargar(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lec
     return opciones;
 }
 
-
-Menu::~Menu(){
-
-    tabla->vaciar_tabla();
-    delete tabla;
-    delete lista_lecturas;
-    if (cola_lecturas)
-        delete cola_lecturas;
-}
-
 void Menu::mostrar_menu(){
     for(int i = 0; i < CANT_OPCIONES; i++)
         cout << AMARILLO << i+1 << ". " << OPCIONES[i]  << endl;
@@ -49,6 +50,8 @@ void Menu::elegir_opcion(){
     string opcion;
     this->opcion = impresor.pedir_opcion();
 }
+
+
 
 bool Menu::selector_menu(Opciones* opciones){
     bool estado;
@@ -124,6 +127,7 @@ bool Menu::selector_menu(Opciones* opciones){
         case 12:
             cout << VERDE << "Caso 12: Tiempo mínimo de lectura" << endl;
             opciones->tiempo_minimo();
+
             estado = true;
             break;
 
@@ -140,6 +144,7 @@ bool Menu::selector_menu(Opciones* opciones){
 
     return estado;
 }
+
 
 void Menu::mantener_abierto_menu(Opciones *opciones){
     mostrar_menu();
