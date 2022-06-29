@@ -65,16 +65,17 @@ void Grafo::liberar_matriz_adyacencia() {
 
 
 void Grafo::arbol_expansion(){
-    delete algoritmo_arbol_expansion;
     algoritmo_arbol_expansion = new Prim(matriz_adyacencia, vertices);
     algoritmo_arbol_expansion -> arbol_expansion();
+    delete algoritmo_arbol_expansion;
+    algoritmo_arbol_expansion = nullptr;
 }
 
 Grafo::~Grafo(){
     liberar_matriz_adyacencia();
     matriz_adyacencia = nullptr;
     delete vertices;
-    delete algoritmo_arbol_expansion;
+    //delete algoritmo_arbol_expansion;         ESTO AL FINAL SE SOLUCIONA EN Grafo::arbol_expansion()
 
 }
 
