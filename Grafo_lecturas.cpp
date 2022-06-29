@@ -14,6 +14,8 @@ Grafo_lecturas::Grafo_lecturas(Lista_lecturas* lista_lecturas) : Grafo(){
 Grafo_lecturas::~Grafo_lecturas(){
     delete [] vertices;
     delete grafo_lecturas;
+    grafo_lecturas = nullptr;
+    cout << "************ destructor GRAFO LECTURA " << endl;
 }
 
 

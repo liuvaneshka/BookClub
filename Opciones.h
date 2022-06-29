@@ -58,7 +58,7 @@ private:
     void actualizar_cola(Lectura* lectura_eliminada);
 
     //PRE: La cola_lecturas debe estar bien definida.
-    //POST: Poregunta al usuario si desea leet la lectura al frente de la cola.
+    //POST: Pregunta al usuario si desea leer la lectura al frente de la cola.
     void marcar_como_leida();
 
 

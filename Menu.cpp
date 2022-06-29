@@ -6,11 +6,11 @@ Menu::Menu(){
     Lista_lecturas *lista_lecturas = new Lista_lecturas;
     Hash<string, Escritor*> *tabla = new Hash<string, Escritor*>;
     cola_lecturas = nullptr;
+    grafo_lecturas = nullptr;
 
     Parser parser;
     this->tabla = parser.procesar_escritor(ARCHIVO_ESCRITORES, tabla);
     this->lista_lecturas = parser.procesar_lectura(ARCHIVO_LECTURAS, lista_lecturas, tabla);
-
     inicializar_semilla();
 }
 
@@ -21,6 +21,9 @@ Menu::~Menu(){
     delete lista_lecturas;
     if (cola_lecturas)
         delete cola_lecturas;
+    delete grafo_lecturas;
+    grafo_lecturas = nullptr;
+
 }
 
 void Menu::mostrar_menu(){
@@ -108,6 +111,7 @@ bool Menu::selector_menu(){
         case 12:
             cout << VERDE << "Caso 12: Tiempo mínimo de lectura" << endl;
             opciones.tiempo_minimo();
+
             estado = true;
             break;
 
