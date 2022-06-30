@@ -132,21 +132,21 @@ void Opciones::modificar_fallecimiento(){
     tabla->imprimir_tabla(LLAVE);
     string isni = impresor.pedir_isni();
     isni = "(" + isni + ")";
-
     Escritor* escritor_a_modificar = tabla->encontrar_dato(isni);
-    cout << AVISO_FALLECIMIENTO_VALIDO << escritor_a_modificar->obtener_anio_nacimiento() << endl;
-    int nuevo_fallecimiento = impresor.pedir_fallecimiento();
 
     if (escritor_a_modificar == nullptr)
         cout << ROJO << ESCRITOR_INEXISTENTE << endl;
 
-    else if (nuevo_fallecimiento == -1 || nuevo_fallecimiento > escritor_a_modificar->obtener_anio_nacimiento()){
+    else {
+        cout << AVISO_FALLECIMIENTO_VALIDO << escritor_a_modificar->obtener_anio_nacimiento() << endl;
+        int nuevo_fallecimiento = impresor.pedir_fallecimiento();
 
-        escritor_a_modificar -> modificar_fallecimiento(nuevo_fallecimiento);
-        cout << AZUL << ACTUALIZACION_EXITOSA << endl;
+        if (nuevo_fallecimiento == -1 || nuevo_fallecimiento > escritor_a_modificar->obtener_anio_nacimiento()) {
+            escritor_a_modificar->modificar_fallecimiento(nuevo_fallecimiento);
+            cout << AZUL << ACTUALIZACION_EXITOSA << endl;
+        } else
+            cout << ROJO << INGRESO_INVALIDO << endl;
     }
-    else
-        cout << ROJO << INGRESO_INVALIDO << endl;
 }
 
 void Opciones::sortear(){
