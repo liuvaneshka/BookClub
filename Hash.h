@@ -46,6 +46,10 @@ public:
     //POST: Destruye los escritores y los nodos creados, vacia la lista.
     void vaciar_tabla();
 
+    //PRE: Recibe la llave del escritor a eliminar
+    //POST: Elimina el escritor y los nodos creados, vacia la lista.
+    void eliminar(T1 llave);
+
 };
 
 template <class T1, class T2>
@@ -112,6 +116,7 @@ void Hash<T1, T2> :: imprimir_tabla(int tipo){
     for(int i = 0; i < (int)indices.size(); i++){
         if (indices[i] != nullptr){
             if(tipo == VALOR)
+                cout << "   INDICE       " << i << "  -->  " << endl;
             Lista_doble_parametro<T1, T2> *puntero = indices[i];
             while(puntero != nullptr){
                 imprimir_por_tipo(tipo, puntero);
@@ -139,6 +144,36 @@ T2 Hash<T1, T2> :: encontrar_dato(T1 llave) {
         }
     }
     return valor;
+}
+
+template <class T1, class T2>
+void Hash<T1, T2> :: eliminar(T1 llave){
+    if(indices.empty()){
+        cout << "Tabla vacia" << endl;
+    }
+    int indice = funcion_hash(llave);
+    Lista_doble_parametro<T1, T2> *puntero = indices[indice];
+
+    if(puntero->obtener_llave() == llave){ // en caso de que sea el primer elemento de la lista indice
+        indices[indice] = puntero->obtener_siguiente();
+        Escritor* es = puntero->obtener_valor();
+        delete es;
+        delete puntero;
+        return;
+    }
+
+    while(puntero != nullptr){
+
+        if(puntero->obtener_siguiente()->obtener_llave() == llave){
+            Lista_doble_parametro<T1, T2> *aux = puntero->obtener_siguiente();
+            puntero->siguiente = puntero->siguiente->obtener_siguiente();
+            Escritor* es = aux->valor;
+            delete es;
+            delete(aux);
+            return;
+        }
+        puntero = puntero->siguiente;
+    }
 }
 
 

@@ -1,5 +1,6 @@
 #include "Opciones.h"
 
+
 Opciones::Opciones(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas){
 
     this->tabla = tabla;
@@ -280,5 +281,25 @@ void Opciones::tiempo_minimo(){
     grafo_lecturas->arbol_expansion();
     delete grafo_lecturas;
     grafo_lecturas = nullptr;
+}
+
+void Opciones::eliminar_escritor(){
+
+    tabla->imprimir_tabla(LLAVE);
+    string llave = impresor.pedir_isni();
+    llave = '(' + llave + ')';
+    Escritor* escritor_a_eliminar = tabla->encontrar_dato(llave);
+    if(escritor_a_eliminar == nullptr){
+        cout << "No existe el escritor" << endl;
+    }
+    else{
+
+        string nombre_escritor = escritor_a_eliminar->obtener_nombre();
+        lista_lecturas->eliminar_escritor_en_lectura(nombre_escritor);
+        tabla->eliminar(llave);
+        cout << "ESCRITOR_ELIMINADO" << endl;
+
+    }
+
 }
 

@@ -121,6 +121,12 @@ bool Menu::selector_menu(){
             break;
 
         case 13:
+            cout << VERDE << "Caso 13: Eliminar un escritor" << endl;
+            opciones->eliminar_escritor();
+            estado = true;
+            break;
+
+        case 14:
             cout << "\n\t\t\tCordial despedida\n" << endl;
             estado = false;
             break;

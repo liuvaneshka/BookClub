@@ -25,6 +25,10 @@ Escritor *Lectura::obtener_escritor() {
     return escritor;
 }
 
+void Lectura::modificar_escritor(Escritor * escritor){
+    this->escritor = escritor;
+}
+
 bool Lectura::lectura_leida(){
     return leida;
 }

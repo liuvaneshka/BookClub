@@ -121,6 +121,11 @@ public:
     //POST:
     void tiempo_minimo();
 
+    //PRE: La lista_escritores debe estar ben definida.
+    //POST: Crea y almacena en lista_escritores el escritor con los atributos ingresados por el usuario.
+    void eliminar_escritor();
+
+
 };
 
 #endif

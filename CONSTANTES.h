@@ -32,10 +32,11 @@ const string OPCIONES [] = {"Agregar una nueva lectura",
                           "Listar Novelas por genero",
                           "Listar proximas lecturas",
                           "Tiempo mínimo de lectura",
+                          "Eliminar escritor",
                           "Salir"
                           };
 
-const int CANT_OPCIONES = 13;
+const int CANT_OPCIONES = 14;
 
 //Mensajes / Opciones
 const char SI = 's';

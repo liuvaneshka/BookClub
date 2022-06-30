@@ -60,6 +60,8 @@ public:
     //POST: Devuelve el escritor de la Lectura.
     Escritor *obtener_escritor();
 
+    void modificar_escritor(Escritor * escritor);
+
     //PRE: Lectura es un objeto válido.
     /*POST: Devuelve -1 si la Lectura que llama posee un año de publicación anterior a la del parámetro.
             Devuelve 0 si las Lecturas poseen el mismo año de publicación.
