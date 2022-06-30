@@ -174,8 +174,13 @@ void Opciones::listar_por_escritor(){
     while(opcion == SI){
         string isni = impresor.pedir_isni();
         isni = "(" + isni + ")";
-        string nombre_escritor = tabla->encontrar_dato(isni)->obtener_nombre();
-        lista_lecturas->listar_por_escritor(nombre_escritor);
+
+        if(tabla->encontrar_dato(isni) == nullptr)
+            cout << ROJO << ESCRITOR_INEXISTENTE << endl;
+        else {
+            string nombre_escritor = tabla->encontrar_dato(isni)->obtener_nombre();
+            lista_lecturas->listar_por_escritor(nombre_escritor);
+        }
         opcion = impresor.seguir_listando();
     }
 
