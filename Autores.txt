@@ -52,3 +52,63 @@ Margaret Atwood
 canadiense
 -1
 2
+
+(11)
+George Martin
+estadounidense
+1948
+-1
+
+(12)
+Joanne Rowling
+británica
+1965
+-1
+
+(13)
+Dan Brown
+estadounidense
+1964
+-1
+
+(14)
+Edgar Allan Poe
+estadounidense
+1809
+1849
+
+(15)
+Felipe Pigna
+argentino
+1959
+-1
+
+(16)
+Roberto Fontanarrosa
+argentino
+1944
+2007
+
+(17)
+Eduardo Sacheri
+argentino
+1967
+-1
+
+(18)
+George Orwell
+indio
+1903
+1950
+
+(19)
+María Elena Walsh
+argentina
+1930
+2011
+
+(20)
+Franz Kafka
+checo
+1833
+1924
