@@ -162,7 +162,8 @@ generos Parser::obtener_genero(string genero) {
 
 
 void Parser::almacenar_lectura(Lectura* lectura, Lista_lecturas *lista_lecturas){
-    lista_lecturas->alta(lectura);
+    int posicion = lista_lecturas->posicion_segun_anio(lectura);
+    lista_lecturas->alta(lectura, posicion);
 }
 
 bool Parser::verificar_escritor(string linea_escritor){

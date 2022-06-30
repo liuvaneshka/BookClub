@@ -9,11 +9,8 @@ class Lista_lecturas : public Lista<Lectura*> {
 private:
     Lista<Lectura*>* lista_lecturas;
 
-    //PRE: el objeto lectura debe ser un objeto valido
-    //POS: Determina la posicion de una lectura en la lista segun su anio de publicacion
-    int posicion_segun_anio(Lectura* lectura);
-
 public:
+
     //PRE: -
     //POS: Construye una Lista de Lecturas vacia.
     Lista_lecturas();
@@ -50,5 +47,9 @@ public:
     //PRE: lista_lecturas.vacia() = false
     //POS: Muestra la informacion de las Novelas de un genero en paricular (siempre que pertenezcan a la lista)
     void listar_por_genero(generos genero);
+
+    //PRE: el objeto lectura debe ser un objeto valido
+    //POS: Determina la posicion de una lectura en la lista segun su anio de publicacion
+    int posicion_segun_anio(Lectura* lectura);
 };
 #endif // __LISTA_LECTURAS_H__

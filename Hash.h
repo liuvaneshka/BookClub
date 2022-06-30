@@ -30,7 +30,6 @@ private:
 
 public:
 
-
     //PRE: La lista debe contener dos parametros validos (llave y valor)
     //POST: Construye el objeto lista doble parametro.
     void agregar_lista(T1 llave, T2 valor);
@@ -113,7 +112,6 @@ void Hash<T1, T2> :: imprimir_tabla(int tipo){
     for(int i = 0; i < (int)indices.size(); i++){
         if (indices[i] != nullptr){
             if(tipo == VALOR)
-                cout << "   INDICE       " << i << "  -->  " << endl;
             Lista_doble_parametro<T1, T2> *puntero = indices[i];
             while(puntero != nullptr){
                 imprimir_por_tipo(tipo, puntero);

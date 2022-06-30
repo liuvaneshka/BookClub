@@ -92,4 +92,8 @@ const int VALOR = 1;
 const int LLAVE = 2;
 const int NOMBRE = 3;
 
+// Atributo de leida de lecturas
+const bool NO_LEIDA = false;
+const bool LEIDA = true;
+
 #endif // __CONSTANTES_H__

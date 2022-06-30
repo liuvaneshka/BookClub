@@ -5,6 +5,7 @@ Lectura::Lectura(string titulo, Escritor * escritor, int anio, int minutos){
     this->anio = anio;
     this->minutos = minutos;
     this->escritor = escritor;
+    this->leida = NO_LEIDA;
 }
 Lectura::~Lectura(){}
 
@@ -22,6 +23,14 @@ string Lectura::obtener_titulo() {
 
 Escritor *Lectura::obtener_escritor() {
     return escritor;
+}
+
+bool Lectura::lectura_leida(){
+    return leida;
+}
+
+void Lectura::leer(){
+    leida = LEIDA;
 }
 
 int Lectura::comparar_lecturas(Lectura *lectura) {

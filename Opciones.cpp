@@ -8,14 +8,12 @@ Opciones::Opciones(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lectura
     this->grafo_lecturas = grafo_lecturas;
 }
 
-Opciones::~Opciones(){
-    delete grafo_lecturas;
-    grafo_lecturas = nullptr;
-}
+Opciones::~Opciones(){}
 
 void Opciones::agregar_lectura(){
     Lectura* nueva_lectura = crear_lectura();
-    lista_lecturas->alta(nueva_lectura);
+    int posicion = lista_lecturas->posicion_segun_anio(nueva_lectura);
+    lista_lecturas->alta(nueva_lectura, posicion);
 
     cout << LECTURA_CREADA << endl;
     nueva_lectura->mostrar_lectura();
@@ -90,7 +88,6 @@ Escritor* Opciones::crear_escritor() {
 
             nuevo_escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
             tabla->agregar_lista(nuevo_isni, nuevo_escritor);
-            //tabla->imprimir_tabla(LLAVE);
         }
     } else
         nuevo_escritor = nullptr;
@@ -121,10 +118,6 @@ void Opciones::quitar_lectura(){
             cout << ROJO << LECTURA_INEXISTENTE << endl;
 
         else{
-
-            if (cola_lecturas && !cola_lecturas->vacia())
-                actualizar_cola(lista_lecturas->consultar(indice_a_eliminar));
-            cout << "Lista lecturas " << lista_lecturas->obtener_dato_cursor() << endl;
             Lectura * eliminar =  lista_lecturas->consultar(indice_a_eliminar);
             delete eliminar;
 
@@ -132,18 +125,6 @@ void Opciones::quitar_lectura(){
             cout << AZUL << ELIMINACION_EXITOSA << endl;
         }
     }
-}
-
-void Opciones::actualizar_cola(Lectura* lectura_eliminada){
-    Cola<Lectura*>* cola_actualizada = new Cola<Lectura*>;
-
-    while(!cola_lecturas->vacia()){
-        Lectura* lectura_actual = cola_lecturas->desencolar();
-        if (lectura_actual != lectura_eliminada)
-            cola_actualizada -> encolar(lectura_actual);
-    }
-    delete cola_lecturas;
-    this->cola_lecturas = cola_actualizada;
 }
 
 void Opciones::modificar_fallecimiento(){
@@ -187,9 +168,12 @@ void Opciones::listar_lecturas_entre_anios(){
 
 void Opciones::listar_por_escritor(){
     char opcion = SI;
-    tabla->imprimir_tabla(NOMBRE);
+
+    tabla->imprimir_tabla(LLAVE);
     while(opcion == SI){
-        string nombre_escritor = impresor.pedir_nombre_escritor();
+        string isni = impresor.pedir_isni();
+        isni = "(" + isni + ")";
+        string nombre_escritor = tabla->encontrar_dato(isni)->obtener_nombre();
         lista_lecturas->listar_por_escritor(nombre_escritor);
         opcion = impresor.seguir_listando();
     }
@@ -212,18 +196,16 @@ void Opciones::listar_novelas_de_genero(){
 }
 
 
-Cola<Lectura*>* Opciones::proximas_lecturas(){
+void Opciones::proximas_lecturas(){
+    cola_de_lecturas();
 
-    if (!cola_lecturas){
-        cola_de_lecturas();
-    }
-
-    if (!cola_lecturas->vacia()){
-        marcar_como_leida();
-    }
-    else
+    if (cola_lecturas->vacia())
         cout << ROJO << NO_QUEDAN_LECTURAS << endl;
-    return  cola_lecturas;
+    else
+        marcar_como_leida();
+
+    delete cola_lecturas;
+    cola_lecturas = nullptr;
 }
 
 void Opciones::cola_de_lecturas(){
@@ -247,9 +229,11 @@ Lista<Lectura*>* Opciones::ordenar_por_minutos(){
     lista_lecturas->inicializar();
     while(lista_lecturas->hay_actual()){
         Lectura* lectura_actual = lista_lecturas->obtener_dato_cursor();
-        posicion_correcta = obtener_posicion_segun_minutos(lecturas_ordenadas, lectura_actual);
+        if (!lectura_actual->lectura_leida()){
+            posicion_correcta = obtener_posicion_segun_minutos(lecturas_ordenadas, lectura_actual);
+            lecturas_ordenadas->alta(lectura_actual, posicion_correcta);
+        }
 
-        lecturas_ordenadas->alta(lectura_actual, posicion_correcta);
         lista_lecturas->siguiente();
     }
     return lecturas_ordenadas;
@@ -281,13 +265,10 @@ void Opciones::marcar_como_leida(){
     opcion = impresor.opcion_leer();
 
     if (tolower(opcion) == SI){
-        if (cola_lecturas->vacia())
-            cout << ROJO << NO_QUEDAN_LECTURAS << endl;
-        else {
-            cola_lecturas->desencolar();
-            cout << AZUL << LECTURA_EXITOSA << endl;
+        prox_lectura->leer();
+        cola_lecturas->desencolar();
+        cout << AZUL << LECTURA_EXITOSA << endl;
         }
-    }
     else if(tolower(opcion) == NO)
         cout << AZUL << ELEGIR_NUEVA_OPCION << endl;
     else
@@ -295,9 +276,9 @@ void Opciones::marcar_como_leida(){
 }
 
 void Opciones::tiempo_minimo(){
-    delete grafo_lecturas;
-    grafo_lecturas = nullptr;
     grafo_lecturas = new Grafo_lecturas(lista_lecturas);
     grafo_lecturas->arbol_expansion();
+    delete grafo_lecturas;
+    grafo_lecturas = nullptr;
 }
 

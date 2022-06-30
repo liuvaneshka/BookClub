@@ -12,6 +12,7 @@ protected:
     int anio;
     Escritor* escritor;
     string titulo;
+    bool leida;
 
 public:
 
@@ -48,6 +49,14 @@ public:
     int obtener_anio();
 
     //PRE: El objeto Lectura es un objeto válido.
+    //POST: Devuelve true si la lectura fdue leida, false en caso contrario.
+    bool lectura_leida();
+
+    //PRE: El objeto lectura debe ser un objeto válido.
+    //POST: Lee una lectura.
+    void leer();
+
+    //PRE: El objeto Lectura es un objeto válido.
     //POST: Devuelve el escritor de la Lectura.
     Escritor *obtener_escritor();
 
@@ -59,6 +68,8 @@ public:
 
     int comparar_lecturas(Lectura *lectura, int sobrecargar);
 
+    //PRE: -
+    //POST: Método virtual, definido en cada subclase.
     virtual bool es_cuento() = 0;
     virtual bool es_poema() = 0;
     virtual bool es_novela() = 0;

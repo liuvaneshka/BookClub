@@ -53,10 +53,6 @@ private:
             la lectura para mantener la lista ordenada por minutos de lectura. */
     int obtener_posicion_segun_minutos(Lista<Lectura*>*  lecturas_ordenadas, Lectura* lectura);
 
-    //PRE: -
-    //POST: Elimina de la cola de lecturas la lectura que fue eliminada con quitar_lectura().
-    void actualizar_cola(Lectura* lectura_eliminada);
-
     //PRE: La cola_lecturas debe estar bien definida.
     //POST: Pregunta al usuario si desea leer la lectura al frente de la cola.
     void marcar_como_leida();
@@ -118,8 +114,8 @@ public:
     void listar_novelas_de_genero();
 
     //PRE: La lista_lecturas y la cola_lecturas deben estar bien definidas.
-    //POST: Crea una cola de lecturas y perite leer la del frente de la cola.
-    Cola<Lectura*>* proximas_lecturas();
+    //POST: Crea una cola de lecturas y permite leer la del frente de la cola.
+    void proximas_lecturas();
 
     //PRE:
     //POST:
