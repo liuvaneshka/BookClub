@@ -35,9 +35,6 @@ private:
     //POST: Devuelve el peso de la arista que une dos vértices de distinto tipo, según los itpos de vértices en cuestión.
     int peso_distinto_tipo(string tipo_v1, string tipo_v2);
 
-    //PRE: lectura debe ser un objeto válido.
-    //POST: Devuelve el tipo de Lectura del vértice.
-    string obtener_tipo(Lectura* lectura);
 
 public:
 
