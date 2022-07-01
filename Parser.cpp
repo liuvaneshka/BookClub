@@ -126,7 +126,6 @@ Lista_lecturas* Parser::procesar_lectura(string ruta, Lista_lecturas* lista_lect
                 dato = entrada.leer_linea();
                 escritor = obtener_escritor(dato, tabla);
 
-
                 Cuento* cuento = new Cuento(titulo, escritor, anio, minutos, libro);
                 almacenar_lectura(cuento, lista_lecturas);
             }

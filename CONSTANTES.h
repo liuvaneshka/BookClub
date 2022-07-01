@@ -90,7 +90,7 @@ const string VIOLETA = "\e[1;35m";
 
 // Tabala de Hash
 const string ANONIMO = "0";
-const int N = 25; // lambda = 0.8, lambda = clave/n un numero primo al menos 1.3 veces mas de las claves
+const int N = 29; // lambda = 0.8, lambda = clave/n un numero primo al menos 1.3 veces mas de las claves
 
 //Constantes imprimir tabla
 const int VALOR = 1;
