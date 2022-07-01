@@ -63,16 +63,21 @@ Lectura* Opciones::crear_lectura(){
 
 void Opciones::agregar_escritor(){
     Escritor* nuevo_escritor = crear_escritor();
-    cout << ESCRITOR_CREADO << endl;
-    nuevo_escritor->mostrar_escritor();
+    if(nuevo_escritor){
+        cout << ESCRITOR_CREADO << endl;
+        nuevo_escritor->mostrar_escritor();
+    }
+    else
+        cout << ESCRITOR_INVALIDO << endl;
+
 }
 
 Escritor* Opciones::crear_escritor() {
-    Escritor *nuevo_escritor;
+    Escritor *nuevo_escritor = nullptr;
     Escritor *escritor_hallado;
 
     string nuevo_isni;
-    nuevo_isni = impresor.pedir_isni();
+    nuevo_isni = impresor.pedir_isni(0);
     nuevo_isni = "(" + nuevo_isni +  ")";
 
     if(nuevo_isni != "(0)"){
@@ -90,8 +95,7 @@ Escritor* Opciones::crear_escritor() {
             nuevo_escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
             tabla->agregar_lista(nuevo_isni, nuevo_escritor);
         }
-    } else
-        nuevo_escritor = nullptr;
+    }
 
     return nuevo_escritor;
 }
@@ -289,22 +293,26 @@ void Opciones::tiempo_minimo(){
 }
 
 void Opciones::eliminar_escritor(){
-
     tabla->imprimir_tabla(LLAVE);
-    string llave = impresor.pedir_isni();
-    llave = '(' + llave + ')';
-    Escritor* escritor_a_eliminar = tabla->encontrar_dato(llave);
-    if(escritor_a_eliminar == nullptr){
-        cout << "No existe el escritor" << endl;
-    }
+    string isni = impresor.pedir_isni();
+
+    if (isni == ANONIMO)
+        cout << ELIMINACION_ERRONEA << endl;
+
     else{
+        isni = '(' + isni + ')';
+        Escritor* escritor_a_eliminar = tabla->encontrar_dato(isni);
 
-        string nombre_escritor = escritor_a_eliminar->obtener_nombre();
-        lista_lecturas->eliminar_escritor_en_lectura(nombre_escritor);
-        tabla->eliminar(llave);
-        cout << "ESCRITOR_ELIMINADO" << endl;
+        if(escritor_a_eliminar == nullptr){
+            cout << ESCRITOR_INEXISTENTE << endl;
+        }
+        else{
+            string nombre_escritor = escritor_a_eliminar->obtener_nombre();
+            lista_lecturas->eliminar_escritor_en_lectura(nombre_escritor);
+            tabla->eliminar(isni);
+            cout << ROJO << ESCRITOR_ELIMINADO << endl;
+        }
 
     }
-
 }
 

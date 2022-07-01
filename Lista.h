@@ -41,8 +41,8 @@ public:
     //POST: Devuelve el dato que se encuentra en la posicion.
     Dato consultar(int posicion);
 
-    //PRE:
-    //POST:
+    //PRE: dato debe ser un dato válido.
+    //POST: Devuelve la posicion en la que se encunetra el dato (primer indice es el 1 y el dato siempre está en la lista).
     int obtener_posicion(Dato dato);
 
     //PRE: El objeto Lista debe ser un objeto válido.
@@ -150,10 +150,6 @@ int Lista<Dato>::obtener_posicion(Dato dato){
         i++;
         actual = actual->obtener_siguiente();
     }
-
-    //if(!elem_encontrado){
-    //    return POSICION_NO_ENCONTRADA;
-    //}
 
     return i - 2;   // Ya que esta lista empieza con el indice 1 y no 0
 }

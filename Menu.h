@@ -22,9 +22,8 @@
 #include "Hash.h"
 //Opciones
 #include "Opciones.h"
-//printer
+//Impresor
 #include "Impresor.h"
-
 
 using namespace std;
 
@@ -54,8 +53,9 @@ public:
     //POST: Destruye un Menu.
     ~Menu();
 
-    void cargar(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas);
-
+    //PRE: La tabla y la lista deben estar bien definidas.
+    //POST: Carga la tabla de Escritores y la lista de Lecturas con los métodos del Praser.
+    void cargar(Hash<string, Escritor*>* tabla, Lista_lecturas* lista_lecturas);
 
     //PRE: Menu debe ser un objeto válido.
     //POST: Impriem las opcines del Menu.
@@ -73,7 +73,6 @@ public:
     //POST: Dependiendo de la opcion ingresada por el usuario, se ejecuta la acción correspondiente.
     bool selector_menu(Opciones* opciones);
 
-    void mantener_abierto_menu(Opciones *opciones);
 };
 
 #endif

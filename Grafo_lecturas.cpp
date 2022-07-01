@@ -30,7 +30,9 @@ void Grafo_lecturas::crear_grafo(){
         Lectura* lectura_actual = lista_lecturas->consultar(i);
         agregar_vertice(lectura_actual);
 
-        string tipo_vertice = obtener_tipo(lectura_actual);
+        //string tipo_vertice = obtener_tipo(lectura_actual);
+        string tipo_vertice = lectura_actual->obtener_tipo();
+
         vertices[i - 1] = tipo_vertice;
         i++;
     }
@@ -46,7 +48,7 @@ void Grafo_lecturas::actualizar_grafo(){
     }
 }
 
-void Grafo_lecturas::agregar_arista(int i, int j){  // Indices de cada vértice proveninetes de los ciclos de actualizar_grafo
+void Grafo_lecturas::agregar_arista(int i, int j){  // Indices de cada vértice provenientes de los ciclos de actualizar_grafo
     string tipo1 = vertices[i - 1];
     string tipo2 = vertices[j - 1];
 
@@ -103,6 +105,7 @@ int Grafo_lecturas::peso_distinto_tipo(string tipo_v1, string tipo_v2){
     return peso;
 }
 
+/*
 string Grafo_lecturas::obtener_tipo(Lectura* lectura){
     string tipo_lectura;
 
@@ -117,3 +120,4 @@ string Grafo_lecturas::obtener_tipo(Lectura* lectura){
 
     return tipo_lectura;
 }
+*/

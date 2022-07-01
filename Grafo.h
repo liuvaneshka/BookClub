@@ -42,7 +42,7 @@ private:
 public:
 
     //PRE: -
-    //POST: Construye un obejwto de tipo Grafo.
+    //POST: Construye un objeto de tipo Grafo.
     Grafo();
 
     //PRE: -
@@ -58,11 +58,11 @@ public:
     void mostrar_grafo();
 
     //PRE: -
-    //POST: Crea el arbol de expansión mínimo, imrpime los caminos y el tiempo minimo de lectura.
+    //POST: Crea el arbol de expansión mínimo, imprime los caminos y el tiempo minimo de lectura.
     void arbol_expansion();
 
     //PRE: Grafo debe ser un objeto válido.
-    //POST: Destruye un obejwto de tipo Grafo.
+    //POST: Destruye un objeto de tipo Grafo.
     ~Grafo();
 };
 

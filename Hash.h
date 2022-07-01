@@ -60,7 +60,7 @@ int Hash<T1, T2> :: funcion_hash(T1 llave){
         hash = hash + (int)llave[i];
         i++;
     }
-    return ((hash % N) + 1 ); // devuelve el indice sumo uno para que la tabla no comienc de 0
+    return ((hash % N) + 1 ); // Devuelve el indice, sumo uno para que la tabla no comience de 0
 }
 
 template <class T1, class T2>
@@ -71,7 +71,7 @@ void Hash<T1, T2> :: insertar_en_indice(int indice, T1 llave, T2 valor){
 
     }
     else{
-        Lista_doble_parametro<T1, T2> *puntero = indices[indice];// apnta al primer
+        Lista_doble_parametro<T1, T2> *puntero = indices[indice];// Apunta al primero
 
         while(puntero->siguiente != nullptr){
             puntero = puntero->siguiente;
@@ -154,10 +154,10 @@ void Hash<T1, T2> :: eliminar(T1 llave){
     int indice = funcion_hash(llave);
     Lista_doble_parametro<T1, T2> *puntero = indices[indice];
 
-    if(puntero->obtener_llave() == llave){ // en caso de que sea el primer elemento de la lista indice
+    if(puntero->obtener_llave() == llave){
         indices[indice] = puntero->obtener_siguiente();
-        Escritor* es = puntero->obtener_valor();
-        delete es;
+        Escritor* escritor_actual = puntero->obtener_valor();
+        delete escritor_actual;
         delete puntero;
         return;
     }
@@ -167,15 +167,14 @@ void Hash<T1, T2> :: eliminar(T1 llave){
         if(puntero->obtener_siguiente()->obtener_llave() == llave){
             Lista_doble_parametro<T1, T2> *aux = puntero->obtener_siguiente();
             puntero->siguiente = puntero->siguiente->obtener_siguiente();
-            Escritor* es = aux->valor;
-            delete es;
+            Escritor* escritor_actual = aux->valor;
+            delete escritor_actual;
             delete(aux);
             return;
         }
         puntero = puntero->siguiente;
     }
 }
-
 
 template <class T1, class T2>
 void Hash<T1, T2> :: vaciar_tabla(){
@@ -195,6 +194,5 @@ void Hash<T1, T2> :: vaciar_tabla(){
         }
     }
 }
-
 
 #endif

@@ -64,13 +64,15 @@ char* Novela_historica::recorrer_tema(string tema){
 
 void Novela_historica::mostrar_lectura(){
     Lectura::mostrar_lectura();
-    //cout << "Tema: " << tema << "\n" << endl;
-
 
     if(this->tema == nullptr)
         cout << "Tema desconocido" << endl;
     else
         cout << "Tema: " << tema << '\n' << endl;
+}
+
+string Novela_historica::obtener_tipo(){
+    return _HISTORICA;
 }
 
 int Novela_historica::imprimir_novela_genero(generos genero){

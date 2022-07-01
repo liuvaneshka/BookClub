@@ -11,15 +11,15 @@ private:
     Lista_lecturas* lista_lecturas;
     string* vertices;
 
-    //PRE:
-    //POST:
+    //PRE: -
+    //POST: Agrega todos los caminos del grafo.
     void actualizar_grafo();
 
-    //PRE:
+    //PRE: Los vertices son vértices existentes.
     //POST: Agrega una arista entre dos vértices con el peso correspondiente.
     void agregar_arista(int i, int j);
 
-    //PRE:
+    //PRE: -
     //POST: Inicializa un vector de vértices con cadenas vacías.
     void inicializar_vertices();
 

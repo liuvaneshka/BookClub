@@ -36,7 +36,7 @@ private:
     Grafo_lecturas* grafo_lecturas;
 
 
-    //PRE: La lista_escritores debe estar ben definida.
+    //PRE: La tabla de escritores debe estar ben definida.
     //POST: Pide al usuario los atributos necesarios y crea al Escritor.
     Escritor* crear_escritor();
 
@@ -75,7 +75,7 @@ public:
     //POST: Pide al usuario los atributos necesarios y crea el objeto correspondiente (Poema, Cuento, Novela, Novela_historica).
     Lectura* crear_lectura();
 
-    //PRE: La lista_escritores debe estar ben definida.
+    //PRE: La tabla de escritores debe estar ben definida.
     //POST: Crea y almacena en lista_escritores el escritor con los atributos ingresados por el usuario.
     void agregar_escritor();
 
@@ -117,14 +117,13 @@ public:
     //POST: Crea una cola de lecturas y permite leer la del frente de la cola.
     void proximas_lecturas();
 
-    //PRE:
-    //POST:
+    //PRE: -
+    //POST: Devueve el arbol de expansion mínimo del grafo de lecturas y su tiempo mínimo de lectura.
     void tiempo_minimo();
 
-    //PRE: La lista_escritores debe estar ben definida.
-    //POST: Crea y almacena en lista_escritores el escritor con los atributos ingresados por el usuario.
+    //PRE: La tabla de escritores debe estar bien definida.
+    //POST: Elimina de la tabla el escritor ingresado por el usuario.
     void eliminar_escritor();
-
 
 };
 

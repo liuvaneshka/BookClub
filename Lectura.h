@@ -29,10 +29,6 @@ public:
     virtual ~Lectura() = 0;
 
     //PRE: El objeto Lectura es un objeto válido.
-    //POST: Método virtual, definido en cada subclase.
-    virtual int imprimir_novela_genero(generos genero) = 0;
-
-    //PRE: El objeto Lectura es un objeto válido.
     //POST: Método virtual que imprime los atributos de la Lectura (polimorfismo).
     virtual void mostrar_lectura();
 
@@ -60,8 +56,6 @@ public:
     //POST: Devuelve el escritor de la Lectura.
     Escritor *obtener_escritor();
 
-    void modificar_escritor(Escritor * escritor);
-
     //PRE: Lectura es un objeto válido.
     /*POST: Devuelve -1 si la Lectura que llama posee un año de publicación anterior a la del parámetro.
             Devuelve 0 si las Lecturas poseen el mismo año de publicación.
@@ -69,6 +63,18 @@ public:
     int comparar_lecturas(Lectura *lectura);
 
     int comparar_lecturas(Lectura *lectura, int sobrecargar);
+
+    //PRE: escritor debe ser un escritor válido.
+    //POST: Modifica el escritor de la lectura.
+    void modificar_escritor(Escritor* escritor);
+
+    //PRE: El objeto Lectura es un objeto válido.
+    //POST: Método virtual, definido en cada subclase.
+    virtual int imprimir_novela_genero(generos genero) = 0;
+
+    //PRE: -
+    //POST: Método virtual, definido en cada subclase.
+    virtual string obtener_tipo() = 0;
 
     //PRE: -
     //POST: Método virtual, definido en cada subclase.

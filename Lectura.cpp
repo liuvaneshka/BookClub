@@ -25,7 +25,7 @@ Escritor *Lectura::obtener_escritor() {
     return escritor;
 }
 
-void Lectura::modificar_escritor(Escritor * escritor){
+void Lectura::modificar_escritor(Escritor* escritor){
     this->escritor = escritor;
 }
 
@@ -51,7 +51,7 @@ int Lectura::comparar_lecturas(Lectura *lectura) {
 
 int Lectura::comparar_lecturas(Lectura* lectura, int sobrecargar){
     int valor;
-    //std::cout << "SOBRECARGAR comparar lecturas " << obtener_titulo() << std::endl;
+
     if(obtener_minutos() < lectura->obtener_minutos())
         valor = -1;
     else if(obtener_minutos() > lectura->obtener_minutos())

@@ -44,6 +44,11 @@ public:
     //PRE: -
     //POST: Devuelve False, dado que esta es la clase Poema;
     bool es_historica();
+
+    //PRE:
+    //POST: Devuelve "P", dado que se trata de una Poema.
+    string obtener_tipo();
+
 };
 
 #endif //TP2_POEMA_H

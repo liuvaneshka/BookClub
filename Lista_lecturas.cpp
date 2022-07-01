@@ -44,7 +44,6 @@ int Lista_lecturas::rastrear(string titulo){
 
 void Lista_lecturas::sortear(){
     int num_random = rand() % obtener_tamanio() + 1;
-    //cout << "numero random elegido: " << num_random << endl;
 
     Lectura* lectura_random = consultar(num_random);
 

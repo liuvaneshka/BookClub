@@ -61,8 +61,6 @@ Hash<string, Escritor*>* Parser::procesar_escritor(string ruta,Hash<string, Escr
 
     }
     entrada.cerrar_archivo();
-    //std::cout << "hash " << std::endl;
-    //tabla->imprimir_tabla();
     return tabla;
 }
 

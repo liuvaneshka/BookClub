@@ -28,8 +28,8 @@ void Grafo::agregar_camino(Lectura* origen, Lectura* destino, int peso) {
 void Grafo::agrandar_matriz_adyacencia() {
     int** matriz_aux;
     int nueva_cant_vertices = vertices->obtener_tamanio() + 1;
-    cout << "AGRANDAR " << vertices->obtener_tamanio() + 1 << endl;
     matriz_aux = new int*[nueva_cant_vertices];
+
     for(int i = 0; i < nueva_cant_vertices; i++){
         matriz_aux[i] = new int[nueva_cant_vertices];
     }

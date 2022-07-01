@@ -38,15 +38,13 @@ const string OPCIONES [] = {"Agregar una nueva lectura",
 
 const int CANT_OPCIONES = 14;
 
-//Mensajes / Opciones
-const char SI = 's';
-const char NO = 'n';
+//Mensajes
 const string INGRESO_INVALIDO = "\nIngreso inválido, intente nuevamente.\n";
 const string NO_QUEDAN_LECTURAS = "\nYa no quedan lecturas por ser leidas.\n";
 const string LISTA_VACIA = "\n No se puede eliminar ninguna lectura, la lista de lecturas está vacía.\n";
 const string LECTURA_INEXISTENTE = "\nLa lectura que desea eliminar no existe, intente nuevamente.\n";
-const string ESCRITOR_INEXISTENTE = "\nNo se encuentra el escritor que desea modificar, intente nuevamente.\n";
-const string ESCRITOR_EXISTENTE = "Escritor existente\n";
+const string ESCRITOR_INEXISTENTE = "\nNo existe el escritor, intente nuevamente.\n";
+const string ESCRITOR_EXISTENTE = "Escritor existente";
 const string ACTUALIZACION_EXITOSA = "\nFallecimiento actualizado con éxito!\n";
 const string ELIMINACION_EXITOSA = "\nLectura eliminada con éxito!\n";
 const string LECTURA_EXITOSA = "\nLectura leida con éxito.\n";
@@ -59,6 +57,28 @@ const string ERROR_POR_ESCRITOR = "\nNo existen lecturas escritas por el Escrito
 const string ERROR_POR_GENERO = "\nNo existen lecturas del género especificado, intente nuevamente.\n";
 const string ANIOS_INVALIDOS = "\nAños inválidos, intente nuevamente\n";
 const string AVISO_FALLECIMIENTO_VALIDO = "El fallecimiento debe ser después del anio de nacimiento: ";
+const string ESCRITOR_ELIMINADO = "\n Escritor eliminado con éxito!\n";
+const string ELIMINACION_ERRONEA = "\n No es posible eliminar un escritor anónimo, intente nuevamente.\n";
+const string ESCRITOR_INVALIDO = "\n No es posible crear un escritor anónimo, intente nuevamente.\n";
+
+// Opciones
+const char SI = 's';
+const char NO = 'n';
+const string CASO_1 = "Caso 1: Agregar una nueva lectura";
+const string CASO_2 = "Caso 2: Quitar lectura";
+const string CASO_3 = "Caso 3: Agregar un escritor";
+const string CASO_4 = "Caso 4: Actualizar fallecimiento autor";
+const string CASO_5 = "Caso 5: Listar los escritores";
+const string CASO_6 = "Caso 6: Sortear una lectura";
+const string CASO_7 = "Caso 7: Listar lecturas";
+const string CASO_8 = "Caso 8: Listar lecturas por anio";
+const string CASO_9 = "Caso 9: Listar lecturas por escritor";
+const string CASO_10 = "Caso 10: Listar Novelas por genero";
+const string CASO_11 = "Caso 11: Listar proximas lecturas";
+const string CASO_12 = "Caso 12: Tiempo mínimo de lectura";
+const string CASO_13 = "Caso 13: Eliminar un escritor";
+const string DESPEDIDA = "\n\t\t\tCordial despedida\n";
+const string OPCION_INVALIDA = "\nError elige otra opcion valida\n";
 
 //Colores
 const string NEGRO = "\e[1;30m";
@@ -68,10 +88,14 @@ const string VERDE = "\e[1;32m";
 const string AMARILLO = "\e[1;33m";
 const string VIOLETA = "\e[1;35m";
 
-// TP3 //
-
+// Tabala de Hash
 const string ANONIMO = "0";
 const int N = 25; // lambda = 0.8, lambda = clave/n un numero primo al menos 1.3 veces mas de las claves
+
+//Constantes imprimir tabla
+const int VALOR = 1;
+const int LLAVE = 2;
+const int NOMBRE = 3;
 
 // Tiempo entre lecturas
 const int CUENTO_CUENTO = 8;
@@ -87,11 +111,6 @@ const int HISTORICA_NOVELA = 60;
 
 // Constantes para el grafo
 const int INFINITO = 9999999;
-
-//Constantes imprimir tabla
-const int VALOR = 1;
-const int LLAVE = 2;
-const int NOMBRE = 3;
 
 // Atributo de leida de lecturas
 const bool NO_LEIDA = false;
