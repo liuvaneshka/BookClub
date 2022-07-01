@@ -1,5 +1,6 @@
 #include "Opciones.h"
 
+
 Opciones::Opciones(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lecturas, Cola<Lectura*>* cola_lecturas, Grafo_lecturas* grafo_lecturas){
 
     this->tabla = tabla;
@@ -8,14 +9,12 @@ Opciones::Opciones(Hash<string, Escritor*> *tabla, Lista_lecturas* lista_lectura
     this->grafo_lecturas = grafo_lecturas;
 }
 
-Opciones::~Opciones(){
-    delete grafo_lecturas;
-    grafo_lecturas = nullptr;
-}
+Opciones::~Opciones(){}
 
 void Opciones::agregar_lectura(){
     Lectura* nueva_lectura = crear_lectura();
-    lista_lecturas->alta(nueva_lectura);
+    int posicion = lista_lecturas->posicion_segun_anio(nueva_lectura);
+    lista_lecturas->alta(nueva_lectura, posicion);
 
     cout << LECTURA_CREADA << endl;
     nueva_lectura->mostrar_lectura();
@@ -64,16 +63,21 @@ Lectura* Opciones::crear_lectura(){
 
 void Opciones::agregar_escritor(){
     Escritor* nuevo_escritor = crear_escritor();
-    cout << ESCRITOR_CREADO << endl;
-    nuevo_escritor->mostrar_escritor();
+    if(nuevo_escritor){
+        cout << ESCRITOR_CREADO << endl;
+        nuevo_escritor->mostrar_escritor();
+    }
+    else
+        cout << ESCRITOR_INVALIDO << endl;
+
 }
 
 Escritor* Opciones::crear_escritor() {
-    Escritor *nuevo_escritor;
+    Escritor *nuevo_escritor = nullptr;
     Escritor *escritor_hallado;
 
     string nuevo_isni;
-    nuevo_isni = impresor.pedir_isni();
+    nuevo_isni = impresor.pedir_isni(0);
     nuevo_isni = "(" + nuevo_isni +  ")";
 
     if(nuevo_isni != "(0)"){
@@ -90,10 +94,8 @@ Escritor* Opciones::crear_escritor() {
 
             nuevo_escritor = new Escritor(nombre, nacionalidad, nacimiento, fallecimiento);
             tabla->agregar_lista(nuevo_isni, nuevo_escritor);
-            //tabla->imprimir_tabla(LLAVE);
         }
-    } else
-        nuevo_escritor = nullptr;
+    }
 
     return nuevo_escritor;
 }
@@ -121,10 +123,6 @@ void Opciones::quitar_lectura(){
             cout << ROJO << LECTURA_INEXISTENTE << endl;
 
         else{
-
-            if (cola_lecturas && !cola_lecturas->vacia())
-                actualizar_cola(lista_lecturas->consultar(indice_a_eliminar));
-            cout << "Lista lecturas " << lista_lecturas->obtener_dato_cursor() << endl;
             Lectura * eliminar =  lista_lecturas->consultar(indice_a_eliminar);
             delete eliminar;
 
@@ -134,37 +132,25 @@ void Opciones::quitar_lectura(){
     }
 }
 
-void Opciones::actualizar_cola(Lectura* lectura_eliminada){
-    Cola<Lectura*>* cola_actualizada = new Cola<Lectura*>;
-
-    while(!cola_lecturas->vacia()){
-        Lectura* lectura_actual = cola_lecturas->desencolar();
-        if (lectura_actual != lectura_eliminada)
-            cola_actualizada -> encolar(lectura_actual);
-    }
-    delete cola_lecturas;
-    this->cola_lecturas = cola_actualizada;
-}
-
 void Opciones::modificar_fallecimiento(){
     tabla->imprimir_tabla(LLAVE);
     string isni = impresor.pedir_isni();
     isni = "(" + isni + ")";
-
     Escritor* escritor_a_modificar = tabla->encontrar_dato(isni);
-    cout << AVISO_FALLECIMIENTO_VALIDO << escritor_a_modificar->obtener_anio_nacimiento() << endl;
-    int nuevo_fallecimiento = impresor.pedir_fallecimiento();
 
     if (escritor_a_modificar == nullptr)
         cout << ROJO << ESCRITOR_INEXISTENTE << endl;
 
-    else if (nuevo_fallecimiento == -1 || nuevo_fallecimiento > escritor_a_modificar->obtener_anio_nacimiento()){
+    else {
+        cout << AVISO_FALLECIMIENTO_VALIDO << escritor_a_modificar->obtener_anio_nacimiento() << endl;
+        int nuevo_fallecimiento = impresor.pedir_fallecimiento();
 
-        escritor_a_modificar -> modificar_fallecimiento(nuevo_fallecimiento);
-        cout << AZUL << ACTUALIZACION_EXITOSA << endl;
+        if (nuevo_fallecimiento == -1 || nuevo_fallecimiento > escritor_a_modificar->obtener_anio_nacimiento()) {
+            escritor_a_modificar->modificar_fallecimiento(nuevo_fallecimiento);
+            cout << AZUL << ACTUALIZACION_EXITOSA << endl;
+        } else
+            cout << ROJO << INGRESO_INVALIDO << endl;
     }
-    else
-        cout << ROJO << INGRESO_INVALIDO << endl;
 }
 
 void Opciones::sortear(){
@@ -187,10 +173,18 @@ void Opciones::listar_lecturas_entre_anios(){
 
 void Opciones::listar_por_escritor(){
     char opcion = SI;
-    tabla->imprimir_tabla(NOMBRE);
+
+    tabla->imprimir_tabla(LLAVE);
     while(opcion == SI){
-        string nombre_escritor = impresor.pedir_nombre_escritor();
-        lista_lecturas->listar_por_escritor(nombre_escritor);
+        string isni = impresor.pedir_isni();
+        isni = "(" + isni + ")";
+
+        if(tabla->encontrar_dato(isni) == nullptr)
+            cout << ROJO << ESCRITOR_INEXISTENTE << endl;
+        else {
+            string nombre_escritor = tabla->encontrar_dato(isni)->obtener_nombre();
+            lista_lecturas->listar_por_escritor(nombre_escritor);
+        }
         opcion = impresor.seguir_listando();
     }
 
@@ -212,18 +206,16 @@ void Opciones::listar_novelas_de_genero(){
 }
 
 
-Cola<Lectura*>* Opciones::proximas_lecturas(){
+void Opciones::proximas_lecturas(){
+    cola_de_lecturas();
 
-    if (!cola_lecturas){
-        cola_de_lecturas();
-    }
-
-    if (!cola_lecturas->vacia()){
-        marcar_como_leida();
-    }
-    else
+    if (cola_lecturas->vacia())
         cout << ROJO << NO_QUEDAN_LECTURAS << endl;
-    return  cola_lecturas;
+    else
+        marcar_como_leida();
+
+    delete cola_lecturas;
+    cola_lecturas = nullptr;
 }
 
 void Opciones::cola_de_lecturas(){
@@ -247,9 +239,11 @@ Lista<Lectura*>* Opciones::ordenar_por_minutos(){
     lista_lecturas->inicializar();
     while(lista_lecturas->hay_actual()){
         Lectura* lectura_actual = lista_lecturas->obtener_dato_cursor();
-        posicion_correcta = obtener_posicion_segun_minutos(lecturas_ordenadas, lectura_actual);
+        if (!lectura_actual->lectura_leida()){
+            posicion_correcta = obtener_posicion_segun_minutos(lecturas_ordenadas, lectura_actual);
+            lecturas_ordenadas->alta(lectura_actual, posicion_correcta);
+        }
 
-        lecturas_ordenadas->alta(lectura_actual, posicion_correcta);
         lista_lecturas->siguiente();
     }
     return lecturas_ordenadas;
@@ -281,13 +275,10 @@ void Opciones::marcar_como_leida(){
     opcion = impresor.opcion_leer();
 
     if (tolower(opcion) == SI){
-        if (cola_lecturas->vacia())
-            cout << ROJO << NO_QUEDAN_LECTURAS << endl;
-        else {
-            cola_lecturas->desencolar();
-            cout << AZUL << LECTURA_EXITOSA << endl;
+        prox_lectura->leer();
+        cola_lecturas->desencolar();
+        cout << AZUL << LECTURA_EXITOSA << endl;
         }
-    }
     else if(tolower(opcion) == NO)
         cout << AZUL << ELEGIR_NUEVA_OPCION << endl;
     else
@@ -295,9 +286,33 @@ void Opciones::marcar_como_leida(){
 }
 
 void Opciones::tiempo_minimo(){
-    delete grafo_lecturas;
-    grafo_lecturas = nullptr;
     grafo_lecturas = new Grafo_lecturas(lista_lecturas);
     grafo_lecturas->arbol_expansion();
+    delete grafo_lecturas;
+    grafo_lecturas = nullptr;
+}
+
+void Opciones::eliminar_escritor(){
+    tabla->imprimir_tabla(LLAVE);
+    string isni = impresor.pedir_isni();
+
+    if (isni == ANONIMO)
+        cout << ELIMINACION_ERRONEA << endl;
+
+    else{
+        isni = '(' + isni + ')';
+        Escritor* escritor_a_eliminar = tabla->encontrar_dato(isni);
+
+        if(escritor_a_eliminar == nullptr){
+            cout << ESCRITOR_INEXISTENTE << endl;
+        }
+        else{
+            string nombre_escritor = escritor_a_eliminar->obtener_nombre();
+            lista_lecturas->eliminar_escritor_en_lectura(nombre_escritor);
+            tabla->eliminar(isni);
+            cout << ROJO << ESCRITOR_ELIMINADO << endl;
+        }
+
+    }
 }
 

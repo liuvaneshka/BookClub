@@ -49,5 +49,10 @@ public:
     //PRE: -
     //POST: Devuelve False, dado que esta es la clase Novela.
     bool es_historica();
+
+    //PRE:
+    //POST: Devuelve "N", dado que se trata de una Novela.
+    string obtener_tipo();
+
 };
 #endif // __NOVELA_H__

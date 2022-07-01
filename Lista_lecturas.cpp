@@ -44,7 +44,6 @@ int Lista_lecturas::rastrear(string titulo){
 
 void Lista_lecturas::sortear(){
     int num_random = rand() % obtener_tamanio() + 1;
-    //cout << "numero random elegido: " << num_random << endl;
 
     Lectura* lectura_random = consultar(num_random);
 
@@ -105,7 +104,7 @@ void Lista_lecturas::listar_entre_anios(int desde, int hasta){
 }
 
 void Lista_lecturas::listar_por_escritor(string nombre_escritor){
-     bool hay_lecturas = false;
+    bool hay_lecturas = false;
 
     inicializar();
     while(hay_actual()){
@@ -138,3 +137,23 @@ void Lista_lecturas::listar_por_genero(generos genero){
     if (!contador_lecturas)
         cout << ROJO << ERROR_POR_GENERO << endl;
 }
+
+
+void Lista_lecturas::eliminar_escritor_en_lectura(string nombre_escritor){
+    cout << nombre_escritor << endl;
+
+    inicializar();
+    while(hay_actual()){
+        Lectura* lectura_actual = obtener_dato_cursor();
+        Escritor* escritor_actual = lectura_actual->obtener_escritor();
+        Escritor* escritor_nulo = nullptr;
+
+        if (escritor_actual != nullptr && escritor_actual->obtener_nombre() == nombre_escritor){
+            lectura_actual->modificar_escritor(escritor_nulo);
+        }
+
+        siguiente();
+    }
+
+}
+

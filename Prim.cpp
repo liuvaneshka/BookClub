@@ -15,7 +15,6 @@ Prim::Prim(int ** matriz_adyacencia, Lista<Lectura*>* vertices){
     //Inicializar matriz del arbol (matriz vacía) en donde voy a almacenar las aristas del árbol
     crear_matriz_arbol();
 
-    // Halla el arbol de expansion minimo
     hallar_arbol(matriz_adyacencia);
 }
 
@@ -62,7 +61,7 @@ void Prim::hallar_arbol(int** matriz_adyacencia){
                             y = j;
                         }
 
-        // Agrego a la matriz del artbol la arista agregada
+        // Agrego a la matriz del arbol la arista agregada
         matriz_arbol[x][y] = matriz_adyacencia[x][y];
         actualizar_tiempo_aristas(matriz_adyacencia[x][y]);
 

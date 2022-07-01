@@ -36,7 +36,7 @@ private:
     Grafo_lecturas* grafo_lecturas;
 
 
-    //PRE: La lista_escritores debe estar ben definida.
+    //PRE: La tabla de escritores debe estar ben definida.
     //POST: Pide al usuario los atributos necesarios y crea al Escritor.
     Escritor* crear_escritor();
 
@@ -52,10 +52,6 @@ private:
     /*POST: Devuelve el indice de la lista_lecturas donde se debe almacenar
             la lectura para mantener la lista ordenada por minutos de lectura. */
     int obtener_posicion_segun_minutos(Lista<Lectura*>*  lecturas_ordenadas, Lectura* lectura);
-
-    //PRE: -
-    //POST: Elimina de la cola de lecturas la lectura que fue eliminada con quitar_lectura().
-    void actualizar_cola(Lectura* lectura_eliminada);
 
     //PRE: La cola_lecturas debe estar bien definida.
     //POST: Pregunta al usuario si desea leer la lectura al frente de la cola.
@@ -79,7 +75,7 @@ public:
     //POST: Pide al usuario los atributos necesarios y crea el objeto correspondiente (Poema, Cuento, Novela, Novela_historica).
     Lectura* crear_lectura();
 
-    //PRE: La lista_escritores debe estar ben definida.
+    //PRE: La tabla de escritores debe estar ben definida.
     //POST: Crea y almacena en lista_escritores el escritor con los atributos ingresados por el usuario.
     void agregar_escritor();
 
@@ -118,12 +114,16 @@ public:
     void listar_novelas_de_genero();
 
     //PRE: La lista_lecturas y la cola_lecturas deben estar bien definidas.
-    //POST: Crea una cola de lecturas y perite leer la del frente de la cola.
-    Cola<Lectura*>* proximas_lecturas();
+    //POST: Crea una cola de lecturas y permite leer la del frente de la cola.
+    void proximas_lecturas();
 
-    //PRE:
-    //POST:
+    //PRE: -
+    //POST: Devueve el arbol de expansion mínimo del grafo de lecturas y su tiempo mínimo de lectura.
     void tiempo_minimo();
+
+    //PRE: La tabla de escritores debe estar bien definida.
+    //POST: Elimina de la tabla el escritor ingresado por el usuario.
+    void eliminar_escritor();
 
 };
 

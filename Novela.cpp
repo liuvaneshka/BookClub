@@ -37,6 +37,10 @@ string Novela::string_genero(generos genero){
     return cadena_genero;
 }
 
+string Novela::obtener_tipo(){
+    return NOVELA;
+}
+
 int Novela::imprimir_novela_genero(generos genero){
     int contador = 0;
     if (genero == obtener_genero()){

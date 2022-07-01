@@ -50,7 +50,6 @@ string Impresor::pedir_libro(){
     cout << "Ingrese el titulo del libro: ";
     cin.ignore();
     getline(cin, libro);
-    //libro = (char) toupper(libro[0])
     return libro;
 }
 
@@ -77,6 +76,14 @@ string Impresor::pedir_tema(){
 }
 
 string Impresor::pedir_isni(){
+    string isni;
+    cout << AZUL << "Ingrese isni del escritor: ";
+    cin.ignore();
+    getline(cin, isni);
+    return isni;
+}
+
+string Impresor::pedir_isni(int sobrecargar){
     string isni;
     cout << AZUL << "Ingrese isni del escritor (Ingrese 0 si es ANONIMO): ";
     cin.ignore();

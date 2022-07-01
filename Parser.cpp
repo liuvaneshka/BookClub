@@ -61,8 +61,6 @@ Hash<string, Escritor*>* Parser::procesar_escritor(string ruta,Hash<string, Escr
 
     }
     entrada.cerrar_archivo();
-    //std::cout << "hash " << std::endl;
-    //tabla->imprimir_tabla();
     return tabla;
 }
 
@@ -162,7 +160,8 @@ generos Parser::obtener_genero(string genero) {
 
 
 void Parser::almacenar_lectura(Lectura* lectura, Lista_lecturas *lista_lecturas){
-    lista_lecturas->alta(lectura);
+    int posicion = lista_lecturas->posicion_segun_anio(lectura);
+    lista_lecturas->alta(lectura, posicion);
 }
 
 bool Parser::verificar_escritor(string linea_escritor){

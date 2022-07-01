@@ -49,6 +49,7 @@ public:
     //PRE: -
     //POS: Le solicita al usuario que ingrese un isni para ser procesado.
     string pedir_isni();
+    string pedir_isni(int sobrecargar);
 
     //PRE: -
     //POS: Le solicita al usuario que ingrese un nombre para ser procesado.
@@ -85,8 +86,8 @@ public:
     //POS: Le solicita al usuario que ingrese s (SI) o n (NO) para marcar si quiere marcarse como leída una lectura.
     char opcion_leer();
 
-    //PRE:
-    //POST:
+    //PRE: Ingresar 's' o 'n', no ingresar 'si' ni 'no'.
+    //POST: Pregunta al usuario si quiere seguir listando lecturas.
     char seguir_listando();
 };
 

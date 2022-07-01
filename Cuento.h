@@ -46,6 +46,10 @@ public:
     //POST: Devuelve False, dado que esta es la clase Cuento.
     bool es_historica();
 
+    //PRE:
+    //POST: Devuelve "C", dado que se trata de un Cuento.
+    string obtener_tipo();
+
 };
 
 #endif

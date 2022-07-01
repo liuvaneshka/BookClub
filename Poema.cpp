@@ -16,6 +16,9 @@ void Poema::mostrar_lectura(){
     cout << "Versos: " << obtener_versos() << "\n" << endl;
 }
 
+string Poema::obtener_tipo(){
+    return POEMA;
+}
 
 int Poema::imprimir_novela_genero(generos genero){return 0;}
 

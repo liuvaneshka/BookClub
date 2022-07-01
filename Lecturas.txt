@@ -89,3 +89,73 @@ La tumba y la rosa
 1885
 4
 (9)
+
+N
+La metamorfosis
+120
+1915
+DRAMA
+(20)
+
+C
+Corazón delator
+15
+1843
+Cuentos de misterio de Edgar Allan Poe
+(14)
+
+N
+Fuego y sangre
+3000
+2018
+FICCION
+(11)
+
+C
+Esperándolo a Tito
+10
+2000
+Esperándolo a Tito y otros cuentos de fútbol
+(17)
+
+N
+Harry Potter y la piedra filosofal
+200
+1997
+FICCION
+(12)
+
+N
+El código Da Vinci
+350
+2016
+SUSPENSO
+(13)
+
+N
+Los mitos de la historia argentina
+400
+2004
+HISTORICA
+(15)
+
+C
+19 de diciembre de 1971
+10
+1982
+19 de diciembre de 1971
+(16)
+
+N
+1984
+200
+1949
+FICCION
+(18)
+
+P
+La vaca estudiosa
+2
+1963
+28
+(19)
