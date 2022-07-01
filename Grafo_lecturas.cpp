@@ -104,20 +104,3 @@ int Grafo_lecturas::peso_distinto_tipo(string tipo_v1, string tipo_v2){
 
     return peso;
 }
-
-/*
-string Grafo_lecturas::obtener_tipo(Lectura* lectura){
-    string tipo_lectura;
-
-    if(lectura->es_cuento())
-        tipo_lectura = CUENTO;
-    else if(lectura->es_poema())
-        tipo_lectura = POEMA;
-    else if(lectura->es_novela())
-        tipo_lectura = NOVELA;
-    else if(lectura->es_historica())
-        tipo_lectura = _HISTORICA;
-
-    return tipo_lectura;
-}
-*/
