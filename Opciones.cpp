@@ -160,14 +160,14 @@ void Opciones::sortear(){
 void Opciones::listar_lecturas_entre_anios(){
     char opcion = SI;
 
-    while(opcion == SI){
+    while(tolower(opcion) == SI){
         int desde = impresor.pedir_anio_desde();
         int hasta = impresor.pedir_anio_hasta();
         lista_lecturas->listar_entre_anios(desde, hasta);
         opcion = impresor.seguir_listando();
     }
 
-    if (opcion != NO)
+    if (tolower(opcion) != NO)
         cout << ROJO << INGRESO_INVALIDO << endl;
 }
 
@@ -175,7 +175,7 @@ void Opciones::listar_por_escritor(){
     char opcion = SI;
 
     tabla->imprimir_tabla(LLAVE);
-    while(opcion == SI){
+    while(tolower(opcion) == SI){
         string isni = impresor.pedir_isni();
         isni = "(" + isni + ")";
 
@@ -188,20 +188,20 @@ void Opciones::listar_por_escritor(){
         opcion = impresor.seguir_listando();
     }
 
-    if (opcion != NO)
+    if (tolower(opcion) != NO)
         cout << ROJO << INGRESO_INVALIDO << endl;
 }
 
 void Opciones::listar_novelas_de_genero(){
     char opcion = SI;
 
-    while(opcion == SI){
+    while(tolower(opcion) == SI){
         generos genero = impresor.pedir_genero();
         lista_lecturas->listar_por_genero(genero);
         opcion = impresor.seguir_listando();
     }
 
-    if (opcion != NO)
+    if (tolower(opcion) != NO)
         cout << ROJO << INGRESO_INVALIDO << endl;
 }
 
