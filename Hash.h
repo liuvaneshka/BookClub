@@ -60,7 +60,7 @@ int Hash<T1, T2> :: funcion_hash(T1 llave){
         hash = hash + (int)llave[i];
         i++;
     }
-    return ((hash % N) + 1 ); // Devuelve el indice, sumo uno para que la tabla no comience de 0
+    return (hash % N);
 }
 
 template <class T1, class T2>
@@ -113,10 +113,9 @@ void Hash<T1, T2> :: agregar_lista(T1 llave, T2 valor){
 template <class T1, class T2>
 void Hash<T1, T2> :: imprimir_tabla(int tipo){
 
-    for(int i = 1; i < (int)indices.size(); i++){
+    for(int i = 0; i < (int)indices.size(); i++){
         if (indices[i] != nullptr){
-            if(tipo == VALOR)
-                cout << "   INDICE       " << i << "  -->  " << endl;
+
             Lista_doble_parametro<T1, T2> *puntero = indices[i];
             while(puntero != nullptr){
                 imprimir_por_tipo(tipo, puntero);
@@ -178,7 +177,7 @@ void Hash<T1, T2> :: eliminar(T1 llave){
 template <class T1, class T2>
 void Hash<T1, T2> :: vaciar_tabla(){
 
-    for(int i = 1; i < (int)indices.size(); i++){
+    for(int i = 0; i < (int)indices.size(); i++){
         if (indices[i] != nullptr){
             Lista_doble_parametro<T1, T2> *puntero = indices[i];
 
