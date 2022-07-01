@@ -133,22 +133,21 @@ T2 Hash<T1, T2> :: encontrar_dato(T1 llave) {
     int indice = funcion_hash(llave);
     if (indices.at(indice)) {
         Lista_doble_parametro<T1, T2> *puntero = indices[indice];
-        while (puntero != NULL) {
-            if (puntero->obtener_llave() == llave){
-                valor = puntero->obtener_valor();
-                return valor;
-            }
+
+        while (puntero != nullptr && puntero->obtener_llave() != llave)
             puntero = puntero->obtener_siguiente();
-        }
+
+        if(puntero != nullptr)
+            valor = puntero->obtener_valor();
     }
     return valor;
 }
 
 template <class T1, class T2>
 void Hash<T1, T2> :: eliminar(T1 llave){
-    if(indices.empty()){
+    if(indices.empty())
         cout << "Tabla vacia" << endl;
-    }
+
     int indice = funcion_hash(llave);
     Lista_doble_parametro<T1, T2> *puntero = indices[indice];
 
@@ -157,20 +156,19 @@ void Hash<T1, T2> :: eliminar(T1 llave){
         Escritor* escritor_actual = puntero->obtener_valor();
         delete escritor_actual;
         delete puntero;
-        return;
     }
 
-    while(puntero != nullptr){
+    else{
+        while((puntero != nullptr) && (puntero->obtener_siguiente()->obtener_llave() != llave))
+            puntero = puntero->siguiente;
 
-        if(puntero->obtener_siguiente()->obtener_llave() == llave){
+        if(puntero != nullptr){
             Lista_doble_parametro<T1, T2> *aux = puntero->obtener_siguiente();
             puntero->siguiente = puntero->siguiente->obtener_siguiente();
             Escritor* escritor_actual = aux->valor;
             delete escritor_actual;
             delete(aux);
-            return;
         }
-        puntero = puntero->siguiente;
     }
 }
 
