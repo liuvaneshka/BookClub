@@ -68,11 +68,6 @@ public:
     //PRE: Menu debe ser un objeto válido.
     //POST: Dependiendo de la opcion ingresada por el usuario, se ejecuta la acción correspondiente.
     bool selector_menu();
-
-    //PRE: Menu debe ser un objeto válido.
-    //POST: Dependiendo de la opcion ingresada por el usuario, se ejecuta la acción correspondiente.
-    bool selector_menu(Opciones* opciones);
-
 };
 
 #endif

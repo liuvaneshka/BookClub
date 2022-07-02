@@ -25,7 +25,6 @@ private:
 
     Archivo entrada(string ruta);
 
-
     //PRE: linea_genero es una linea leida del archivo de Lecturas.
     //POST: Devuelve el genero del enumerado asociado.
     generos obtener_genero(string linea_genero);

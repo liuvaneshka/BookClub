@@ -52,7 +52,8 @@ public:
     //POS: Determina la posicion de una lectura en la lista segun su anio de publicacion
     int posicion_segun_anio(Lectura* lectura);
 
-
+    //PRE: -
+    //POST: Tras eliminar el escritor, asigna nullptr al escritor de las lecturas correspondientes.
     void eliminar_escritor_en_lectura(string nombre_escritor);
 };
 #endif // __LISTA_LECTURAS_H__
