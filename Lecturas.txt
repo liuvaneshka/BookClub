@@ -1,0 +1,162 @@
+C
+Casa Tomada
+20
+1951
+Bestiario
+(1568)
+
+N
+Rayuela
+2900
+1963
+FICCION
+(1568)
+
+N
+Misery
+2100
+1987
+TERROR
+(1757)
+
+P
+El Poema del Mío Cid
+480
+1140
+3733
+ANONIMO
+
+P
+Voy a dormir
+1
+1938
+14
+(4567)
+
+N
+Frankestein
+1600
+1818
+TERROR
+(1544)
+
+N
+Una columna de fuego
+4800
+2017
+HISTORICA
+Guerra de religiones en Europa en la segunda mitad del siglo XVI
+(5474)
+
+C
+La noche de los dones
+2000
+1975
+El libro de arena
+(6)
+
+P
+Los amorosos
+2
+1949
+8
+(8)
+
+N
+Fahrenheit 451
+4000
+1953
+DRAMA
+(7)
+
+N
+Los miserables
+5000
+1862
+FICCION
+(9)
+
+C
+Finales felices
+2500
+1983
+Finales Felices
+(10)
+
+P
+La tumba y la rosa
+1
+1885
+4
+(9)
+
+N
+La metamorfosis
+120
+1915
+DRAMA
+(20)
+
+C
+Corazón delator
+15
+1843
+Cuentos de misterio de Edgar Allan Poe
+(14)
+
+N
+Fuego y sangre
+3000
+2018
+FICCION
+(11)
+
+C
+Esperándolo a Tito
+10
+2000
+Esperándolo a Tito y otros cuentos de fútbol
+(17)
+
+N
+Harry Potter y la piedra filosofal
+200
+1997
+FICCION
+(12)
+
+N
+El código Da Vinci
+350
+2016
+SUSPENSO
+(13)
+
+N
+Los mitos de la historia argentina
+400
+2004
+HISTORICA
+historia argentina entre 1900 y 2000
+(15)
+
+C
+19 de diciembre de 1971
+10
+1982
+19 de diciembre de 1971
+(16)
+
+N
+1984
+200
+1949
+FICCION
+(18)
+
+P
+La vaca estudiosa
+2
+1963
+28
+(19)
