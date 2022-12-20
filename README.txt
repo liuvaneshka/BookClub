@@ -1,8 +1,8 @@
 
-Compile el programa con: g++ *.cpp -o a
-Para Valgrind:  valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./a
+Compile: g++ *.cpp -o a
+Valgrind:  valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./a
 Dentro de la misma carpeta debe estar Autores.txt y Lecturas.txt
-Corra el programa
+RUN WITH:
 Linux/macOS:  ./a
 
 
